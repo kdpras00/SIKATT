@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Diagrams</title>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true, theme: 'default' });
+    </script>
+    <style>
+        body { font-family: sans-serif; padding: 20px; background: #f4f6f8; color: #333; }
+        .diagram-container { background: white; padding: 30px; margin-bottom: 40px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); overflow-x: auto; }
+        h1 { color: #1a202c; text-align: center; margin-bottom: 40px; }
+        h2 { color: #2d3748; text-align: center; margin-bottom: 20px; border-bottom: 2px solid #edf2f7; padding-bottom: 10px; }
+        .mermaid { display: flex; justify-content: center; min-width: 800px; }
+    </style>
+</head>
+<body>
+
+    <h1>Diagram Sistem SIKATT (Pengajuan Surat)</h1>
+
+    <div class="diagram-container">
+        <h2>1. Class Diagram (Struktur Objek & Peran Pengguna)</h2>
+        <div class="mermaid">
+classDiagram
+    class Warga {
+        +BigInt id
+        +String name
+        +String email
+        +String nik
+        +String kk
+        +String phone
+        +String address
+        +login()
+        +logout()
+        +updateProfile()
+        +requestLetter()
+        +viewHistory()
+    }
+
+    class Staff {
+        +BigInt id
+        +String name
+        +String email
+        +String nik
+        +String phone
+        +String address
+        +login()
+        +logout()
+        +updateProfile()
+        +processLetter()
+    }
+
+    class Lurah {
+        +BigInt id
+        +String name
+        +String email
+        +String nik
+        +String phone
+        +String address
+        +login()
+        +logout()
+        +updateProfile()
+        +verifyLetter()
+        +viewReports()
+    }
+
+    class LetterType {
+        +BigInt id
+        +String name
+        +String code
+        +String description
+    }
+
+    class Letter {
+        +BigInt id
+        +String letter_number
+        +String purpose
+        +String status
+        +Date request_date
+        +process()
+        +verify()
+        +reject()
+    }
+
+    class DocumentVerification {
+        +BigInt id
+        +String sha256_hash
+        +String verification_url
+        +Int verified_count
+    }
+
+    Warga --> Letter : mengajukan
+    Staff --> Letter : memproses
+    Lurah --> Letter : memverifikasi
+    Letter --> LetterType : memiliki_jenis
+    Letter --> DocumentVerification : mempunyai_sertifikat
+        </div>
+    </div>
+
+    <div class="diagram-container">
+        <h2>2. Entity Relationship Diagram (Conceptual ERD)</h2>
+        <div class="mermaid">
+erDiagram
+    warga {
+        bigint id PK
+        string name
+        string email
+        string nik "nullable"
+        string kk "nullable"
+        string phone "nullable"
+        string address "nullable"
+    }
+
+    staff {
+        bigint id PK
+        string name
+        string email
+        string nik "nullable"
+        string phone "nullable"
+        string address "nullable"
+    }
+
+    lurah {
+        bigint id PK
+        string name
+        string email
+        string nik "nullable"
+        string phone "nullable"
+        string address "nullable"
+    }
+
+    letters {
+        bigint id PK
+        bigint warga_id FK
+        bigint staff_id FK
+        bigint lurah_id FK
+        bigint letter_type_id FK
+        string letter_number "nullable"
+        string purpose
+        string status "pending/processed/verified/rejected"
+        date request_date
+    }
+
+    letter_types {
+        bigint id PK
+        string name
+        string code
+        string description
+    }
+
+    document_verifications {
+        bigint id PK
+        bigint letter_id FK
+        string sha256_hash
+        string verification_url
+    }
+
+    warga ||--o{ letters : mengajukan
+    staff ||--o{ letters : memproses
+    lurah ||--o{ letters : memverifikasi
+    letter_types ||--o{ letters : menentukan_jenis
+    letters ||--o| document_verifications : memiliki_verifikasi
+        </div>
+    </div>
+
+</body>
+</html>
