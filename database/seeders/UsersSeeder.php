@@ -10,6 +10,9 @@ class UsersSeeder extends Seeder
 {
     public function run(): void
     {
+        // Reset cached roles and permissions to prevent caching bugs in cPanel/production
+        app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
+
         // Create Roles first
         \Spatie\Permission\Models\Role::firstOrCreate(['name' => 'lurah']);
         \Spatie\Permission\Models\Role::firstOrCreate(['name' => 'staff']);
