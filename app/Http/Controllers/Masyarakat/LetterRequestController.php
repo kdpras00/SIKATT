@@ -25,8 +25,25 @@ class LetterRequestController extends Controller
 
             $letters = auth()->user()->letters()
                 ->with('letterType')
+                ->when($request->filled('search'), function ($query) use ($request) {
+                    $search = $request->input('search');
+                    return $query->where(function ($q) use ($search) {
+                        $q->whereHas('letterType', function ($qu) use ($search) {
+                            $qu->where('name', 'like', "%{$search}%");
+                        })
+                        ->orWhere('purpose', 'like', "%{$search}%")
+                        ->orWhere('letter_number', 'like', "%{$search}%");
+                    });
+                })
+                ->when($request->filled('status'), function ($query) use ($request) {
+                    return $query->where('status', $request->input('status'));
+                })
+                ->when($request->filled('date'), function ($query) use ($request) {
+                    return $query->whereDate('request_date', $request->input('date'));
+                })
                 ->latest()
                 ->paginate(10);
+
             return view('masyarakat.letters.history', compact('letters'));
         }
 
