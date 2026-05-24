@@ -11,7 +11,6 @@ class DashboardController extends Controller
     public function index()
     {
         $stats = [
-            'pending_verification' => Letter::processed()->count(),
             'verified_letters' => Letter::verified()->count(),
             'rejected_letters' => Letter::rejected()->count(),
             'total_requests' => Letter::count(),

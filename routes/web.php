@@ -3,7 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\VerificationController;
+
 use App\Http\Controllers\Staff\DashboardController as StaffDashboardController;
 use App\Http\Controllers\Masyarakat\DashboardController as MasyarakatDashboardController;
 use App\Http\Controllers\Lurah\DashboardController as LurahDashboardController;
@@ -21,13 +21,7 @@ Route::prefix('profil')->name('profile.')->group(function () {
     Route::get('/struktur', [HomeController::class, 'struktur'])->name('struktur');
     Route::get('/peta', [HomeController::class, 'peta'])->name('peta');
 });
-Route::get('/verify', [VerificationController::class, 'index'])->name('verification.index');
-Route::post('/verify', [VerificationController::class, 'verify'])->name('verification.verify');
-Route::get('/verify/{hash}', [VerificationController::class, 'verifyByHash'])
-    ->middleware('throttle:10,1')
-    ->name('verification.verify.hash');
-Route::get('/captcha/refresh', [VerificationController::class, 'refreshCaptcha'])->name('captcha.refresh');
-Route::post('/verify/captcha', [VerificationController::class, 'submitCaptcha'])->name('verification.captcha.submit');
+
 
 // Auth routes
 Route::middleware('guest')->group(function () {
@@ -99,11 +93,7 @@ Route::middleware(['auth', 'role:masyarakat'])->prefix('masyarakat')->name('masy
 Route::middleware(['auth', 'role:lurah'])->prefix('lurah')->name('lurah.')->group(function () {
     Route::get('/dashboard', [LurahDashboardController::class, 'index'])->name('dashboard');
     
-    // Letter verification
-    Route::get('/letters', [\App\Http\Controllers\Lurah\LetterVerificationController::class, 'index'])->name('letters.index');
-    Route::get('/letters/{letter}', [\App\Http\Controllers\Lurah\LetterVerificationController::class, 'show'])->name('letters.show');
-    Route::post('/letters/{letter}/verify', [\App\Http\Controllers\Lurah\LetterVerificationController::class, 'verify'])->name('letters.verify');
-    Route::post('/letters/{letter}/reject', [\App\Http\Controllers\Lurah\LetterVerificationController::class, 'reject'])->name('letters.reject');
+
     // Report routes
     Route::get('/reports', [\App\Http\Controllers\Lurah\ReportController::class, 'index'])->name('reports.index');
     Route::get('/reports/print-letters', [\App\Http\Controllers\Lurah\ReportController::class, 'printLetters'])->name('reports.print-letters');

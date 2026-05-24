@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Verifikasi Surat - Kelurahan Tanah Tinggi')
+@section('title', 'Kelola Surat - Kelurahan Tanah Tinggi')
 
 @section('sidebar')
     @include('staff.sidebar')
@@ -11,7 +11,7 @@
     <div class="p-6 border-b border-gray-200 flex justify-between items-center bg-gray-50 rounded-t-lg">
         <div>
              <h1 class="text-2xl font-bold text-gray-900">Kelola Pengajuan Surat</h1>
-             <p class="text-gray-500 text-sm">Verifikasi staffistrasi pengajuan surat masyarakat</p>
+             <p class="text-gray-500 text-sm">Administrasi pengajuan surat masyarakat</p>
         </div>
     </div>
 
@@ -20,7 +20,7 @@
         <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500">
             <li class="mr-2">
                 <a href="{{ route('staff.letters.index', ['status' => 'pending']) }}" class="inline-block p-4 border-b-2 rounded-t-lg {{ $status == 'pending' ? 'text-blue-600 border-blue-600 active' : 'border-transparent hover:text-gray-600 hover:border-gray-300' }}">
-                    Menunggu Verifikasi
+                    Menunggu Diproses
                 </a>
             </li>
             <li class="mr-2">

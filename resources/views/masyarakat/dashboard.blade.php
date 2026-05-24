@@ -21,7 +21,7 @@
         <div class="text-2xl font-bold text-[#0D2A1C] tracking-tight">{{ $stats['pending_letters'] }}</div>
     </div>
     <div class="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-sm transition-all">
-        <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Surat Terverifikasi</div>
+        <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Surat Selesai</div>
         <div class="text-2xl font-bold text-[#0D2A1C] tracking-tight">{{ $stats['verified_letters'] }}</div>
     </div>
 </div>

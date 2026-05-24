@@ -51,7 +51,7 @@
                         <option value="">Semua Status</option>
                         <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Pending</option>
                         <option value="processed" {{ request('status') == 'processed' ? 'selected' : '' }}>Proses (Paraf Staff)</option>
-                        <option value="verified" {{ request('status') == 'verified' ? 'selected' : '' }}>Terverifikasi (Selesai)</option>
+                        <option value="verified" {{ request('status') == 'verified' ? 'selected' : '' }}>Selesai</option>
                         <option value="rejected" {{ request('status') == 'rejected' ? 'selected' : '' }}>Ditolak</option>
                     </select>
                 </div>
@@ -85,7 +85,7 @@
                         <th class="px-6 py-3">Pemohon</th>
                         <th class="px-6 py-3">Jenis Surat</th>
                         <th class="px-6 py-3">Tanggal Ajuan</th>
-                        <th class="px-6 py-3">Status Verifikasi</th>
+                        <th class="px-6 py-3">Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -96,7 +96,7 @@
                         <td class="px-6 py-4">{{ $item->letterType->name }}</td>
                         <td class="px-6 py-4">{{ \Carbon\Carbon::parse($item->request_date)->translatedFormat('d M Y') }}</td>
                         <td class="px-6 py-4">
-                             @if($item->status == 'verified') <span class="text-green-600 font-bold">Terverifikasi</span>
+                             @if($item->status == 'verified') <span class="text-green-600 font-bold">Selesai</span>
                              @elseif($item->status == 'rejected') <span class="text-red-600 font-bold">Ditolak</span>
                              @else <span class="text-gray-500">Proses</span> @endif
                         </td>

@@ -159,7 +159,7 @@
                  @if($letter->status == 'pending')
                     <div class="flex items-center space-x-2 text-yellow-600 border border-yellow-200 p-3 rounded-lg">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        <span class="font-bold uppercase tracking-wide">Menunggu Verifikasi</span>
+                        <span class="font-bold uppercase tracking-wide">Menunggu Diproses</span>
                     </div>
                  @elseif($letter->status == 'processed')
                     <div class="flex items-center space-x-2 text-blue-600 border border-blue-200 p-3 rounded-lg">

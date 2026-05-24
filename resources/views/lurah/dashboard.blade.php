@@ -15,12 +15,7 @@
 </div>
 
 <!-- Stats Grid -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-    <div class="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-sm transition-all">
-        <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Butuh Verifikasi</div>
-        <div class="text-2xl font-bold text-[#0D2A1C] tracking-tight">{{ $stats['pending_verification'] }}</div>
-    </div>
-
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
     <div class="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-sm transition-all">
         <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Surat Selesai</div>
         <div class="text-2xl font-bold text-[#0D2A1C] tracking-tight">{{ $stats['verified_letters'] }}</div>

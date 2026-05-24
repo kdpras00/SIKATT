@@ -67,9 +67,9 @@
             </a>
 
             <!-- Card 2 -->
-            <a href="{{ route('verification.index') }}" class="quick-card group bg-[#C9A227] p-8 rounded-[40px] shadow-2xl hover:-translate-y-4 transition-all duration-500 border border-black/5 opacity-0 scale-90">
-                <h3 class="text-2xl font-black text-white mb-3 font-rubik tracking-tight">Lacak Status</h3>
-                <p class="text-white/60 text-sm leading-relaxed mb-8">Pantau proses pengajuan surat Anda secara real-time dengan kode unik.</p>  
+            <a href="{{ route('public.stats') }}" class="quick-card group bg-[#C9A227] p-8 rounded-[40px] shadow-2xl hover:-translate-y-4 transition-all duration-500 border border-black/5 opacity-0 scale-90">
+                <h3 class="text-2xl font-black text-white mb-3 font-rubik tracking-tight">Statistik</h3>
+                <p class="text-white/60 text-sm leading-relaxed mb-8">Data kependudukan dan transparansi pelayanan Kelurahan Tanah Tinggi.</p>  
             </a>
 
             <!-- Card 3 -->

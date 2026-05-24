@@ -9,24 +9,6 @@
         </a>
     </li>
 
-    <li class="px-3 pt-4 pb-2 text-xs font-medium text-gray-400 uppercase tracking-wider">
-        Verifikasi
-    </li>
-
-    <li>
-        <a href="{{ route('lurah.letters.index') }}" class="flex items-center p-3 text-gray-700 rounded-lg group {{ Request::routeIs('lurah.letters.*') ? 'bg-green-50 text-[#1B4332]' : 'hover:bg-gray-50 hover:text-[#1B4332]' }} transition-colors">
-             <svg class="flex-shrink-0 w-5 h-5 {{ Request::routeIs('lurah.letters.*') ? 'text-[#1B4332]' : 'text-gray-400 group-hover:text-[#1B4332]' }}" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                <path d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z"/>
-            </svg>
-            <span class="flex-1 ms-3">Tanda tangan digital</span>
-            @php
-                $pendingCount = \App\Models\Letter::where('status', 'processed')->count();
-            @endphp
-            @if($pendingCount > 0)
-                <span class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-white bg-[#1B4332] rounded-full">{{ $pendingCount }}</span>
-            @endif
-        </a>
-    </li>
 
     <li class="px-3 pt-4 pb-2 text-xs font-medium text-gray-400 uppercase tracking-wider">
         Laporan

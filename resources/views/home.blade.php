@@ -48,9 +48,7 @@
                     <li>
                         <a href="#stats" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Statistik</a>
                     </li>
-                    <li>
-                        <a href="#verifikasi" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Verifikasi</a>
-                    </li>
+
                 </ul>
             </div>
         </div>
@@ -70,11 +68,8 @@
                     Mulai Sekarang
                     <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                 </a>
-                <a href="{{ route('verification.index') }}" class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-gray-900 rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
-                    <svg class="mr-2 -ml-1 w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                    Verifikasi Surat
-                </a>
             </div> 
+
         </div>
     </section>
 
@@ -140,33 +135,6 @@
         </div>
     </section>
 
-    <!-- Verification Section -->
-    <section id="verifikasi" class="bg-gray-50 dark:bg-gray-800 py-16">
-        <div class="max-w-screen-xl px-4 mx-auto lg:px-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                <div>
-                     <h2 class="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">Validasi Surat Digital</h2>
-                     <p class="mb-4 text-gray-500 dark:text-gray-400">Setiap surat yang diterbitkan oleh Sistem Manajemen Kelurahan Tanah Tinggi dilengkapi dengan identitas Tanda Tangan Digital unik untuk menjamin keaslian dokumen.</p>
-                     <p class="mb-6 text-gray-500 dark:text-gray-400">Anda dapat memindai kode tersebut atau memasukkan kode verifikasi secara manual untuk memastikan keaslian dokumen.</p>
-                     <a href="{{ route('verification.index') }}" class="inline-flex items-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                        Cek Validitas Surat
-                        <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                     </a>
-                </div>
-                <div class="flex justify-center">
-                    <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 w-full max-w-sm">
-                        <div class="flex justify-center mb-4">
-                            <svg class="w-32 h-32 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                              <path stroke="currentColor" stroke-linejoin="round" stroke-width="2" d="M4 4h6v6H4V4Zm10 10h6v6h-6v-6Zm0-10h6v6h-6V4Zm-4 10h.01v.01H10V14Zm0 4h.01v.01H10V18Zm-3 2h.01v.01H7V20Zm0-4h.01v.01H7V16Zm-3 2h.01v.01H4V18Zm0-4h.01v.01H4V14Z"/>
-                              <path stroke="currentColor" stroke-linejoin="round" stroke-width="2" d="M7 7h.01v.01H7V7Zm10 10h.01v.01H17V17Z"/>
-                            </svg>
-                        </div>
-                        <p class="text-center text-sm text-gray-500">Contoh Tanda Tangan Digital pada surat</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Footer -->
     <footer class="p-4 bg-white md:p-8 lg:p-10 dark:bg-gray-800 border-t border-gray-200">

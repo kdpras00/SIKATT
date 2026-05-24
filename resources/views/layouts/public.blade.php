@@ -87,9 +87,7 @@
                     <a href="{{ route('public.layanan') }}" class="px-2 py-1 mx-2 text-[15px] font-medium transition-all {{ Request::routeIs('public.layanan') ? 'text-[#1B4332] border-b-2 border-[#C9A227]' : 'text-gray-600 hover:text-[#1B4332]' }}">
                         Layanan Surat
                     </a>
-                    <a href="{{ route('verification.index') }}" class="px-2 py-1 mx-2 text-[15px] font-medium transition-all {{ Request::routeIs('verification.index') ? 'text-[#1B4332] border-b-2 border-[#C9A227]' : 'text-gray-600 hover:text-[#1B4332]' }}">
-                        Cek Status
-                    </a>
+
                 </div>
 
                 <!-- Auth Buttons -->
@@ -126,7 +124,7 @@
                 <a href="{{ route('home') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#1B4332] hover:bg-[#F9F6EE]">Beranda</a>
                 <a href="{{ route('public.layanan') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#1B4332] hover:bg-[#F9F6EE]">Layanan</a>
                 <a href="{{ route('public.stats') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#1B4332] hover:bg-[#F9F6EE]">Statistik</a>
-                <a href="{{ route('verification.index') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#1B4332] hover:bg-[#F9F6EE]">Verifikasi Surat</a>
+
                 @auth
                     <a href="{{ url('/home') }}" class="block w-full text-center mt-4 px-4 py-3 rounded-md text-base font-medium bg-[#1B4332] text-white hover:bg-[#0D2A1C]">Dashboard</a>
                 @else
@@ -198,7 +196,7 @@
                      <ul class="space-y-2 text-sm">
                          <li><a href="{{ route('profile.sejarah') }}" class="hover:text-white hover:translate-x-1 transition-all inline-block">Profil Kelurahan</a></li>
                          <li><a href="{{ route('public.layanan') }}" class="hover:text-white hover:translate-x-1 transition-all inline-block">Layanan Surat</a></li>
-                         <li><a href="{{ route('verification.index') }}" class="hover:text-white hover:translate-x-1 transition-all inline-block">Cek Status Surat</a></li>
+
                          <li><a href="{{ route('profile.peta') }}" class="hover:text-white hover:translate-x-1 transition-all inline-block">Peta Wilayah</a></li>
                      </ul>
                 </div>
