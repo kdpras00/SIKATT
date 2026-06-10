@@ -92,7 +92,12 @@ Route::middleware(['auth', 'role:masyarakat'])->prefix('masyarakat')->name('masy
 // Lurah routes
 Route::middleware(['auth', 'role:lurah'])->prefix('lurah')->name('lurah.')->group(function () {
     Route::get('/dashboard', [LurahDashboardController::class, 'index'])->name('dashboard');
-    
+
+    // Letter verification
+    Route::get('/letters', [\App\Http\Controllers\Lurah\LetterVerificationController::class, 'index'])->name('letters.index');
+    Route::get('/letters/{letter}', [\App\Http\Controllers\Lurah\LetterVerificationController::class, 'show'])->name('letters.show');
+    Route::post('/letters/{letter}/verify', [\App\Http\Controllers\Lurah\LetterVerificationController::class, 'verify'])->name('letters.verify');
+    Route::post('/letters/{letter}/reject', [\App\Http\Controllers\Lurah\LetterVerificationController::class, 'reject'])->name('letters.reject');
 
     // Report routes
     Route::get('/reports', [\App\Http\Controllers\Lurah\ReportController::class, 'index'])->name('reports.index');
