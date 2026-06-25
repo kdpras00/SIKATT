@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistem Manajemen Aset Kelurahan Tanah Tinggi</title>
-    <link rel="icon" type="image/png" href="{{ asset('storage/images/logo-tanah-tinggi.png') }}?v={{ time() }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/logo-tanah-tinggi.png') }}?v={{ time() }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-white text-gray-900 font-sans">

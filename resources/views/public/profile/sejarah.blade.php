@@ -6,7 +6,7 @@
 <!-- Page Header -->
 <div class="relative bg-[#0D2A1C] py-24 md:py-32 overflow-hidden">
     <div class="absolute inset-0 opacity-20">
-        <img src="{{ asset('storage/images/background-tanah-tinggi.jpeg') }}" class="w-full h-full object-cover" alt="Background">
+        <img src="{{ asset('images/background-tanah-tinggi.jpeg') }}" class="w-full h-full object-cover" alt="Background">
     </div>
     <div class="container mx-auto px-4 relative z-10 text-center">
         <h1 class="text-5xl md:text-7xl font-black text-white mb-8 font-rubik opacity-0 translate-y-10 reveal-header leading-tight">Sejarah Kelurahan</h1>
@@ -29,7 +29,7 @@
             <div class="my-16 relative">
                  <div class="absolute -inset-4 bg-[#C9A227]/10 rounded-[40px] blur-2xl"></div>
                  <div class="relative rounded-[32px] overflow-hidden shadow-2xl border-8 border-white">
-                    <img src="{{ asset('storage/images/background-tanah-tinggi2.jpeg') }}" alt="Sejarah Kelurahan" class="w-full h-[500px] object-cover">
+                    <img src="{{ asset('images/background-tanah-tinggi2.jpeg') }}" alt="Sejarah Kelurahan" class="w-full h-[500px] object-cover">
                  </div>
             </div>
 

@@ -51,7 +51,7 @@
                             @if(auth()->user()->avatar)
                                 <img id="avatar-preview" class="h-24 w-24 object-cover rounded-full" src="{{ asset('storage/' . auth()->user()->avatar) }}" alt="Profile photo" />
                             @else
-                                <img id="avatar-placeholder" class="h-24 w-24 object-cover rounded-full" src="{{ asset('storage/images/default-profile.png') }}" alt="Default profile photo" />
+                                <img id="avatar-placeholder" class="h-24 w-24 object-cover rounded-full" src="{{ asset('images/default-profile.png') }}" alt="Default profile photo" />
                             @endif
                             <!-- Preview Image Element (Hidden by default) -->
                             <img id="new-avatar-preview" class="hidden h-24 w-24 object-cover rounded-full" />

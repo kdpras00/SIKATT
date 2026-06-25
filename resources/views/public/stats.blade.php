@@ -6,7 +6,7 @@
 <!-- Header Section -->
 <div class="relative bg-[#0D2A1C] py-20 overflow-hidden">
     <div class="absolute inset-0 opacity-20">
-        <img src="{{ asset('storage/images/background-tanah-tinggi2.jpeg') }}" class="w-full h-full object-cover" alt="Background">
+        <img src="{{ asset('images/background-tanah-tinggi2.jpeg') }}" class="w-full h-full object-cover" alt="Background">
     </div>
     <div class="container mx-auto px-4 relative z-10 text-center">
         <h1 class="text-4xl md:text-6xl font-black text-white mb-6 font-rubik stagger-reveal opacity-0 translate-y-10">Statistik Kelurahan</h1>

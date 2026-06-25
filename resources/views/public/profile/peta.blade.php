@@ -6,7 +6,7 @@
 <!-- Page Header -->
 <div class="relative bg-[#0D2A1C] py-24 md:py-32 overflow-hidden">
     <div class="absolute inset-0 opacity-20">
-        <img src="{{ asset('storage/images/background-tanah-tinggi.jpeg') }}" class="w-full h-full object-cover" alt="Background">
+        <img src="{{ asset('images/background-tanah-tinggi.jpeg') }}" class="w-full h-full object-cover" alt="Background">
     </div>
     <div class="container mx-auto px-4 relative z-10 text-center">
         <h1 class="text-5xl md:text-7xl font-black text-white mb-8 font-rubik opacity-0 translate-y-10 reveal-header leading-tight">Peta Wilayah</h1>

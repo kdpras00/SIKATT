@@ -33,8 +33,8 @@
                         elseif(str_contains($lname, 'kematian')) $iconName = 'kematian';
                         elseif(str_contains($lname, 'cuti')) $iconName = 'cuti';
                         
-                        $customIconPath = "storage/images/icons/{$iconName}.png";
-                        $fallbackIconPath = "storage/images/logo-tanah-tinggi.png";
+                        $customIconPath = "images/icons/{$iconName}.png";
+                        $fallbackIconPath = "images/logo-tanah-tinggi.png";
                         
                         $finalIconPath = file_exists(public_path($customIconPath)) ? $customIconPath : $fallbackIconPath;
                         $imgClass = file_exists(public_path($customIconPath)) ? "w-full h-full object-contain" : "w-20 h-20 object-contain";

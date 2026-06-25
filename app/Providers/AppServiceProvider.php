@@ -26,11 +26,11 @@ class AppServiceProvider extends ServiceProvider
             // Auto-detect logo Kelurahan Tanah Tinggi
             $logoBase64 = '';
             foreach ([
-                public_path('storage/images/logo-tanah-tinggi.png'),
+                public_path('images/logo-tanah-tinggi.png'),
                 storage_path('app/public/images/logo-tanah-tinggi.png'),
-                base_path('public/storage/images/logo-tanah-tinggi.png'),
-                '/home/kure8737/public_html/storage/images/logo-tanah-tinggi.png',
-                '/home/kure8737/asetkelurahantanah-tinggi.my.id/public/storage/images/logo-tanah-tinggi.png',
+                base_path('public/images/logo-tanah-tinggi.png'),
+                '/home/kure8737/public_html/images/logo-tanah-tinggi.png',
+                '/home/kure8737/asetkelurahantanah-tinggi.my.id/public/images/logo-tanah-tinggi.png',
             ] as $p) {
                 if (file_exists($p)) {
                     try {
@@ -43,11 +43,11 @@ class AppServiceProvider extends ServiceProvider
             // Auto-detect tanda tangan digital Lurah
             $sigBase64 = '';
             foreach ([
-                public_path('storage/images/tanda-tangan-lurah.jpeg'),
+                public_path('images/tanda-tangan-lurah.jpeg'),
                 storage_path('app/public/images/tanda-tangan-lurah.jpeg'),
-                base_path('public/storage/images/tanda-tangan-lurah.jpeg'),
-                '/home/kure8737/public_html/storage/images/tanda-tangan-lurah.jpeg',
-                '/home/kure8737/asetkelurahantanah-tinggi.my.id/public/storage/images/tanda-tangan-lurah.jpeg',
+                base_path('public/images/tanda-tangan-lurah.jpeg'),
+                '/home/kure8737/public_html/images/tanda-tangan-lurah.jpeg',
+                '/home/kure8737/asetkelurahantanah-tinggi.my.id/public/images/tanda-tangan-lurah.jpeg',
             ] as $p) {
                 if (file_exists($p)) {
                     try {

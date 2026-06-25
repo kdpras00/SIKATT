@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'SIKATT - Kelurahan Tanah Tinggi')</title>
     <meta name="description" content="Website Resmi Pemerintah Kelurahan Tanah Tinggi, Kota Tangerang.">
-    <link rel="icon" type="image/png" href="{{ asset('storage/images/logo-tanah-tinggi.png') }}?v={{ time() }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/logo-tanah-tinggi.png') }}?v={{ time() }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -63,7 +63,7 @@
                 <!-- Logo -->
                 <div class="flex items-center">
                     <a href="{{ route('home') }}" class="flex items-center space-x-3 group">
-                        <img src="{{ asset('storage/images/logo-tanah-tinggi.png') }}" class="h-12 w-auto filter" alt="Logo Kelurahan Tanah Tinggi">
+                        <img src="{{ asset('images/logo-tanah-tinggi.png') }}" class="h-12 w-auto filter" alt="Logo Kelurahan Tanah Tinggi">
                         <div class="flex flex-col">
                             <span class="text-xl font-bold text-[#0D2A1C] leading-tight group-hover:text-[#1B4332] transition-colors uppercase">Tanah Tinggi</span>
                             <span class="text-xs font-medium text-[#C9A227] tracking-wider">KOTA TANGERANG</span>
@@ -149,7 +149,7 @@
                 <!-- Profile -->
                 <div>
                      <div class="flex items-center space-x-3 mb-6">
-                        <img src="{{ asset('storage/images/logo-tanah-tinggi.png') }}" class="h-10 w-auto" alt="Logo">
+                        <img src="{{ asset('images/logo-tanah-tinggi.png') }}" class="h-10 w-auto" alt="Logo">
                         <div class="flex flex-col">
                             <span class="text-lg font-bold text-white uppercase leading-none">Tanah Tinggi</span>
                             <span class="text-xs text-[#C9A227]">Kota Tangerang</span>

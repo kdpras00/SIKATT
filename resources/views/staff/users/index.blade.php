@@ -55,7 +55,7 @@
                         <td class="px-6 py-4">
                             <div class="flex items-center">
                                 <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden mr-3">
-                                    <img src="{{ $user->avatar ? asset('storage/' . $user->avatar) : asset('storage/images/default-profile.png') }}" 
+                                    <img src="{{ $user->avatar ? asset('storage/' . $user->avatar) : asset('images/default-profile.png') }}" 
                                          class="w-full h-full object-cover" 
                                          alt="{{ $user->name }}">
                                 </div>

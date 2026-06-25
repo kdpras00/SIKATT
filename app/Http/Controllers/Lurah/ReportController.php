@@ -53,14 +53,14 @@ class ReportController extends Controller
         $letters = $this->getFilteredLettersQuery($request)->get();
 
         $logoBase64 = '';
-        $logoPath = public_path('storage/images/logo-tanah-tinggi.png');
+        $logoPath = public_path('images/logo-tanah-tinggi.png');
         if (!file_exists($logoPath)) $logoPath = storage_path('app/public/images/logo-tanah-tinggi.png');
         if (file_exists($logoPath)) {
             $logoBase64 = 'data:' . mime_content_type($logoPath) . ';base64,' . base64_encode(file_get_contents($logoPath));
         }
 
         $sigBase64 = '';
-        $sigPath = public_path('storage/images/tanda-tangan-lurah.jpeg');
+        $sigPath = public_path('images/tanda-tangan-lurah.jpeg');
         if (!file_exists($sigPath)) $sigPath = storage_path('app/public/images/tanda-tangan-lurah.jpeg');
         if (file_exists($sigPath)) {
             $sigBase64 = 'data:' . mime_content_type($sigPath) . ';base64,' . base64_encode(file_get_contents($sigPath));

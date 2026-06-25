@@ -12,7 +12,7 @@
     </div>
     
     <div class="absolute inset-0 opacity-20">
-        <img src="{{ asset('storage/images/background-tanah-tinggi2.jpeg') }}" class="w-full h-full object-cover" alt="Background">
+        <img src="{{ asset('images/background-tanah-tinggi2.jpeg') }}" class="w-full h-full object-cover" alt="Background">
     </div>
 
     <div class="container mx-auto px-4 relative z-10 text-center">
@@ -99,7 +99,7 @@
                 <div class="service-grid grid grid-cols-1 md:grid-cols-2 gap-8">
                     @foreach($letterTypes as $type)
                     @php
-                        $iconPath = 'storage/images/icons/' . $type->slug . '.png';
+                        $iconPath = 'images/icons/' . $type->slug . '.png';
                         $iconExists = file_exists(public_path($iconPath));
                     @endphp
                     <div class="service-item opacity-0 translate-y-12 group bg-white p-10 rounded-[44px] shadow-sm border border-gray-100 hover:shadow-2xl hover:-translate-y-3 transition-all duration-500 relative overflow-hidden"

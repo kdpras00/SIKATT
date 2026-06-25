@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Sistem Manajemen Aset Kelurahan Tanah Tinggi')</title>
-    <link rel="icon" type="image/png" href="{{ asset('storage/images/logo-tanah-tinggi.png') }}?v={{ time() }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/logo-tanah-tinggi.png') }}?v={{ time() }}">
     
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -167,7 +167,7 @@
                         </svg>
                     </button>
                     <a href="{{ route('home') }}" class="flex ms-2 md:me-24 items-center">
-                        <img src="{{ asset('storage/images/logo-tanah-tinggi.png') }}" class="h-8 me-3" alt="Logo Kelurahan Tanah Tinggi" />
+                        <img src="{{ asset('images/logo-tanah-tinggi.png') }}" class="h-8 me-3" alt="Logo Kelurahan Tanah Tinggi" />
                         <span class="self-center text-lg font-bold font-rubik sm:text-xl uppercase tracking-widest whitespace-nowrap text-white">Tanah Tinggi</span>
                     </a>
                 </div>
@@ -180,7 +180,7 @@
                             <button type="button" onclick="toggleUserDropdown(event)" class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" aria-expanded="false">
                                 <span class="sr-only">Open user menu</span>
                                 <div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
-                                    <img src="{{ auth()->user()->avatar ? asset('storage/' . auth()->user()->avatar) : asset('storage/images/default-profile.png') }}" 
+                                    <img src="{{ auth()->user()->avatar ? asset('storage/' . auth()->user()->avatar) : asset('images/default-profile.png') }}" 
                                          class="w-full h-full object-cover" 
                                          alt="{{ auth()->user()->name }}">
                                 </div>
@@ -245,7 +245,7 @@
     <div id="global-loading-overlay" class="fixed inset-0 z-[100] bg-[#0D2A1C] flex flex-col items-center justify-center transition-all duration-700 ease-in-out opacity-100 visibility-visible">
         <div class="relative flex flex-col items-center">
             <div class="bg-white/10 backdrop-blur-md border border-white/10 p-6 rounded-3xl shadow-2xl mb-6">
-                <img src="{{ asset('storage/images/logo-tanah-tinggi.png') }}" alt="Loading..." class="w-20 h-20 object-contain">
+                <img src="{{ asset('images/logo-tanah-tinggi.png') }}" alt="Loading..." class="w-20 h-20 object-contain">
             </div>
             <div class="flex flex-col items-center space-y-3">
                 <h3 class="text-xl font-bold text-white tracking-[0.2em] uppercase font-rubik">Memproses...</h3>

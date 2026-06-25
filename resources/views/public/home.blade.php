@@ -19,7 +19,7 @@
     <!-- Slide 1 -->
     <div class="hero-slide absolute inset-0 transition-opacity duration-1000 opacity-100 z-10">
         <div class="absolute inset-0">
-            <img src="{{ asset('storage/images/background-tanah-tinggi.jpeg') }}" class="w-full h-full object-cover shadow-inner" alt="Kantor Kelurahan 1">
+            <img src="{{ asset('images/background-tanah-tinggi.jpeg') }}" class="w-full h-full object-cover shadow-inner" alt="Kantor Kelurahan 1">
             <div class="absolute inset-0 bg-gradient-to-t from-[#0D2A1C] via-[#1B4332]/70 to-transparent"></div>
         </div>
         <div class="container mx-auto px-4 relative h-full flex flex-col justify-center items-center text-center">
@@ -37,7 +37,7 @@
     <!-- Slide 2 -->
     <div class="hero-slide absolute inset-0 transition-opacity duration-1000 opacity-0 z-0">
         <div class="absolute inset-0">
-            <img src="{{ asset('storage/images/background-tanah-tinggi2.jpeg') }}" class="w-full h-full object-cover shadow-inner" alt="Kantor Kelurahan 2">
+            <img src="{{ asset('images/background-tanah-tinggi2.jpeg') }}" class="w-full h-full object-cover shadow-inner" alt="Kantor Kelurahan 2">
             <div class="absolute inset-0 bg-gradient-to-t from-[#0D2A1C] via-[#1B4332]/70 to-transparent"></div>
         </div>
         <div class="container mx-auto px-4 relative h-full flex flex-col justify-center items-end text-right">
@@ -108,14 +108,14 @@
                         <div class="absolute inset-0 rounded-full border-4 border-dashed border-[#C9A227] animate-spin-slow"></div>
                         <!-- Static Content -->
                         <div class="absolute inset-0 bg-white rounded-full shadow-2xl flex items-center justify-center p-6 m-1">
-                            <img src="{{ asset('storage/images/logo-tanah-tinggi.png') }}" alt="Logo" class="w-full h-full object-contain">
+                            <img src="{{ asset('images/logo-tanah-tinggi.png') }}" alt="Logo" class="w-full h-full object-contain">
                         </div>
                     </div>
 
                     <div class="absolute -top-6 -right-6 w-32 h-32 bg-[#C9A227]/20 rounded-full blur-3xl"></div>
                     <div class="absolute -bottom-6 -left-6 w-48 h-48 bg-[#1B4332]/10 rounded-full blur-3xl"></div>
                     
-                    <img src="{{ asset('storage/images/background-tanah-tinggi.jpeg') }}" alt="Sambutan Lurah" class="relative z-10 rounded-[40px] shadow-2xl border-8 border-white">
+                    <img src="{{ asset('images/background-tanah-tinggi.jpeg') }}" alt="Sambutan Lurah" class="relative z-10 rounded-[40px] shadow-2xl border-8 border-white">
                 </div>
             </div>
         </div>
