@@ -391,27 +391,7 @@ class LetterRequestController extends Controller
 
         $row += 4; // Space for signatures
 
-        // Add QR Code
-        if ($letter->status == 'verified' && $letter->sha256_hash) {
-             try {
-                $qrCode = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('png')->size(70)->generate(route('verification.verify.hash', $letter->sha256_hash));
-                
-                // Create temp file for QR
-                $tempQrFile = tempnam(sys_get_temp_dir(), 'qr_code');
-                file_put_contents($tempQrFile, $qrCode);
-
-                $drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
-                $drawing->setName('QR Code');
-                $drawing->setDescription('QR Code');
-                $drawing->setPath($tempQrFile);
-                $drawing->setCoordinates('J' . ($row - 3)); // Position near Sekdes signature area
-                $drawing->setHeight(70);
-                $drawing->setWorksheet($sheet);
-
-             } catch (\Exception $e) {
-                 // Log error or ignore if QR fails, ensure download still works
-             }
-        }
+        // QR Code removed as requested.
         
         $sheet->setCellValue('A' . $row, '( ..................................................... )');
         $sheet->setCellValue('I' . $row, '( DEVI FITRIA, S.Pd )');

@@ -368,21 +368,7 @@ class LetterController extends Controller
 
         $row += 4; 
 
-        if ($letter->status == 'verified' && $letter->sha256_hash) {
-             try {
-                $qrCode = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('png')->size(70)->generate(route('verification.verify.hash', $letter->sha256_hash));
-                $tempQrFile = tempnam(sys_get_temp_dir(), 'qr_code');
-                file_put_contents($tempQrFile, $qrCode);
-
-                $drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
-                $drawing->setName('QR Code');
-                $drawing->setDescription('QR Code');
-                $drawing->setPath($tempQrFile);
-                $drawing->setCoordinates('J' . ($row - 3));
-                $drawing->setHeight(70);
-                $drawing->setWorksheet($sheet);
-             } catch (\Exception $e) {}
-        }
+        // QR Code removed as requested.
         
         $sheet->setCellValue('A' . $row, '( ..................................................... )');
         $sheet->setCellValue('I' . $row, '( DEVI FITRIA, S.Pd )');

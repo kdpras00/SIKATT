@@ -63,7 +63,14 @@
                     </div>
                     <div>
                         <p class="text-sm text-gray-500">Tanggal Pengajuan</p>
-                        <p class="font-medium text-gray-900">{{ \Carbon\Carbon::parse($letter->request_date)->translatedFormat('d F Y, H:i') }} WIB</p>
+                        @php
+                            $displayDate = $letter->request_date;
+                            // Fallback ke created_at jika request_date tidak menyimpan jam (data lama)
+                            if ($displayDate && $displayDate->format('H:i') === '00:00') {
+                                $displayDate = $letter->created_at;
+                            }
+                        @endphp
+                        <p class="font-medium text-gray-900">{{ $displayDate ? $displayDate->translatedFormat('d F Y, H:i') : '-' }} WIB</p>
                     </div>
                     <div>
                         <p class="text-sm text-gray-500">Keperluan</p>
@@ -180,13 +187,10 @@
 
                  @if($letter->status == 'pending')
                  <div class="mt-6 space-y-3">
-                     <form action="{{ route('staff.letters.process', $letter) }}" method="POST" id="processForm" onsubmit="confirmProcess(event)">
+                     <form action="{{ route('staff.letters.process', $letter) }}" method="POST" id="processForm" onsubmit="window.confirmAction(event, 'processForm', 'Proses Surat?', 'Pastikan data sudah benar. Nomor surat akan digenerate otomatis!', 'Ya, Proses!', false)">
                         @csrf
-                        <div class="mb-3">
-                             <label class="block text-xs font-semibold text-gray-500 mb-1">Catatan untuk Lurah (Opsional)</label>
-                             <textarea name="staff_notes" rows="2" class="w-full text-sm border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" placeholder="Tulis catatan..."></textarea>
-                        </div>
-                        <button type="submit" class="w-full py-2.5 px-4 border border-transparent rounded-lg shadow-sm text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition">
+                        <textarea name="staff_notes" rows="2" class="w-full text-sm border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 mb-3" placeholder="Catatan opsional untuk Kepala Desa..."></textarea>
+                        <button type="submit" class="w-full py-3 px-4 rounded-xl text-sm font-bold text-white shadow-lg bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 hover:-translate-y-0.5 transition-all">
                             Proses & Teruskan
                         </button>
                      </form>
@@ -198,7 +202,7 @@
                      </button>
                      
                      <div id="rejectSection" class="hidden mt-3 bg-red-50 p-4 rounded-lg border border-red-100">
-                         <form action="{{ route('staff.letters.reject', $letter) }}" method="POST" id="rejectForm" onsubmit="confirmReject(event)">
+                         <form action="{{ route('staff.letters.reject', $letter) }}" method="POST" id="rejectForm" onsubmit="window.confirmAction(event, 'rejectForm', 'Tolak Permohonan?', 'Apakah Anda yakin ingin menolak permohonan ini?', 'Ya, Tolak!', true)">
                             @csrf
                             <label class="block text-xs font-semibold text-red-700 mb-1">Alasan Penolakan</label>
                             <textarea name="reason" rows="2" required class="w-full text-sm border-red-300 rounded-lg focus:ring-red-500 focus:border-red-500 mb-2" placeholder="Wajib diisi..."></textarea>
@@ -243,43 +247,4 @@
 @endsection
 
 @push('scripts')
-<script>
-    function confirmProcess(event) {
-        event.preventDefault();
-        Swal.fire({
-            title: 'Proses Surat?',
-            text: "Pastikan data sudah benar. Nomor surat akan digenerate otomatis!",
-            icon: 'question',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Ya, Proses!',
-            cancelButtonText: 'Batal'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.showLoading();
-                document.getElementById('processForm').submit();
-            }
-        });
-    }
-
-    function confirmReject(event) {
-        event.preventDefault();
-        Swal.fire({
-            title: 'Tolak Permohonan?',
-            text: "Apakah Anda yakin ingin menolak permohonan ini?",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#3085d6',
-            confirmButtonText: 'Ya, Tolak!',
-            cancelButtonText: 'Batal'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.showLoading();
-                document.getElementById('rejectForm').submit();
-            }
-        });
-    }
-</script>
 @endpush

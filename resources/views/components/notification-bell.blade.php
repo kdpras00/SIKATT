@@ -89,8 +89,10 @@
                     if (data.count > 0) {
                         badge.textContent = data.count > 99 ? '99+' : data.count;
                         badge.classList.remove('hidden');
+                        badge.classList.add('inline-flex');
                     } else {
                         badge.classList.add('hidden');
+                        badge.classList.remove('inline-flex');
                     }
                 })
                 .catch(err => {
@@ -236,7 +238,10 @@
                 })
                 .then(data => {
                     // Optimistic UI updates
-                    if (badge) badge.classList.add('hidden');
+                    if (badge) {
+                        badge.classList.add('hidden');
+                        badge.classList.remove('inline-flex');
+                    }
                     
                     // Reload list
                     fetchNotifications();

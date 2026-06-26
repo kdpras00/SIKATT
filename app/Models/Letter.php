@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Illuminate\Support\Str;
 
 class Letter extends Model
@@ -58,11 +57,6 @@ class Letter extends Model
         return $this->belongsTo(LetterType::class);
     }
 
-    public function documentVerification()
-    {
-        return $this->hasOne(DocumentVerification::class);
-    }
-
     public function scopePending($query)
     {
         return $query->where('status', 'pending');
@@ -83,60 +77,6 @@ class Letter extends Model
         return $query->where('status', 'rejected');
     }
 
-    public function generateVerificationCode()
-    {
-        $this->verification_code = strtoupper(Str::random(12));
-        $this->save();
-        return $this->verification_code;
-    }
-
-    public function generateQRCode()
-    {
-        if (!$this->verification_code) {
-            $this->generateVerificationCode();
-        }
-
-        $url = url('/verify?code=' . $this->verification_code);
-        $filename = 'qr_' . $this->verification_code . '.png';
-        $path = storage_path('app/public/qrcodes/' . $filename);
-
-        if (!file_exists(storage_path('app/public/qrcodes'))) {
-            mkdir(storage_path('app/public/qrcodes'), 0755, true);
-        }
-
-        QrCode::format('png')
-            ->size(300)
-            ->generate($url, $path);
-
-        $this->qr_code = 'qrcodes/' . $filename;
-        $this->save();
-
-        return $this->qr_code;
-    }
-
-    public function generateSHA256Hash()
-    {
-        $hashService = new \App\Services\DocumentHashService();
-        $qrService = new \App\Services\QRCodeService();
-
-        $hash = $hashService->generateHash($this);
-        $verificationUrl = $hashService->generateVerificationUrl($hash);
-        $qrCodePath = $qrService->generate($verificationUrl, 'qr_' . $hash);
-        
-        $this->sha256_hash = $hash;
-        $this->qr_code = $qrCodePath;
-        $this->save();
-        
-        $this->documentVerification()->create([
-            'sha256_hash' => $hash,
-            'verification_url' => $verificationUrl,
-            'issued_at' => now(),
-            'expires_at' => $this->calculateExpiration(),
-        ]);
-        
-        return $hash;
-    }
-
     public function isPending()
     {
         return $this->status === 'pending';
@@ -155,17 +95,5 @@ class Letter extends Model
     public function isRejected()
     {
         return $this->status === 'rejected';
-    }
-
-    public function calculateExpiration()
-    {
-        $type = $this->letterType;
-        if (!$type) return now()->addMonth(); 
-
-        if ($type->slug === 'SKU') {
-            return $this->approved_date->addYear();
-        }
-        
-        return $this->approved_date ? $this->approved_date->addMonth() : now()->addMonth();
     }
 }

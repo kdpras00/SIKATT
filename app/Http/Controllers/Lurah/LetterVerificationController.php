@@ -48,12 +48,7 @@ class LetterVerificationController extends Controller
             'approved_date' => now(),
         ]);
 
-        try {
-            $letter->generateSHA256Hash();
-        } catch (\Exception $e) {
-            \Log::error('Failed to generate SHA-256 hash for letter: ' . $e->getMessage());
-            return back()->with('warning', 'Surat berhasil diverifikasi, namun gagal memproses Tanda Tangan Digital. Silakan hubungi admin.');
-        }
+        // Tanda Tangan Digital berupa Hash / QR Code dihapus sesuai instruksi.
 
         $notification = auth()->user()->unreadNotifications
             ->where('data.letter_id', $letter->id)
@@ -69,7 +64,7 @@ class LetterVerificationController extends Controller
         $staff = User::role('staff')->get();
         Notification::send($staff, new LetterVerifiedForOperator($letter));
 
-        return redirect()->back()->with('success', 'Surat berhasil diverifikasi dan Tanda Tangan Digital telah dibubuhkan.');
+        return redirect()->back()->with('success', 'Surat berhasil diverifikasi.');
     }
 
     public function reject(Request $request, Letter $letter)

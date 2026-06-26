@@ -180,11 +180,11 @@
                          Pastikan data sudah benar sebelum menyetujui. Surat yang disetujui akan diterbitkan dengan Tanda Tangan Digital Lurah.
                      </p>
 
-                     <form id="verifyForm" action="{{ route('lurah.letters.verify', $letter) }}" method="POST">
+                     <form id="verifyForm" action="{{ route('lurah.letters.verify', $letter) }}" method="POST" onsubmit="window.confirmAction(event, 'verifyForm', 'Setujui Surat?', 'Surat akan disetujui sebagai bukti pengesahan sah.', 'Ya, Setujui', false)">
                         @csrf
-                        <button type="button" onclick="confirmVerify()" class="w-full py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-bold text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition flex justify-center items-center">
+                        <button type="submit" class="w-full py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-bold text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition flex justify-center items-center">
                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            Setujui & Tanda Tangani
+                            Setujui Surat
                         </button>
                      </form>
                      
@@ -195,7 +195,7 @@
                      </button>
                      
                      <div id="rejectSection" class="hidden mt-3 bg-red-50 p-4 rounded-lg border border-red-100">
-                         <form id="rejectForm" action="{{ route('lurah.letters.reject', $letter) }}" method="POST" onsubmit="confirmReject(event)">
+                         <form id="rejectForm" action="{{ route('lurah.letters.reject', $letter) }}" method="POST" onsubmit="window.confirmAction(event, 'rejectForm', 'Tolak Permohonan?', 'Apakah Anda yakin ingin menolak permohonan ini?', 'Ya, Tolak!', true)">
                             @csrf
                             <label class="block text-xs font-semibold text-red-700 mb-1">Alasan Penolakan</label>
                             <textarea name="reason" rows="3" required class="w-full text-sm border-red-300 rounded-lg focus:ring-red-500 focus:border-red-500 mb-2" placeholder="Wajib diisi..."></textarea>
@@ -225,42 +225,4 @@
 @endsection
 
 @push('scripts')
-<script>
-    function confirmVerify() {
-        Swal.fire({
-            title: 'Setujui & Tanda Tangani?',
-            text: "Surat akan diverifikasi dan Tanda Tangan Digital akan dibubuhkan sebagai bukti pengesahan sah.",
-            icon: 'question',
-            showCancelButton: true,
-            confirmButtonColor: '#16a34a',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Ya, Setujui',
-            cancelButtonText: 'Batal'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.showLoading();
-                document.getElementById('verifyForm').submit();
-            }
-        });
-    }
-
-    function confirmReject(event) {
-        event.preventDefault();
-        Swal.fire({
-            title: 'Tolak Permohonan?',
-            text: "Apakah Anda yakin ingin menolak atau meminta revisi permohonan ini?",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#3085d6',
-            confirmButtonText: 'Ya, Tolak!',
-            cancelButtonText: 'Batal'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.showLoading();
-                document.getElementById('rejectForm').submit();
-            }
-        });
-    }
-</script>
 @endpush

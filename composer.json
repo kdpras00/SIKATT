@@ -15,7 +15,6 @@
         "laravel/tinker": "^2.10.1",
         "mews/captcha": "^3.4",
         "phpoffice/phpspreadsheet": "^5.3",
-        "simplesoftwareio/simple-qrcode": "^4.2",
         "spatie/laravel-permission": "^6.25"
     },
     "require-dev": {

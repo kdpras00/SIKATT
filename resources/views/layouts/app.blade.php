@@ -174,19 +174,42 @@
                 <div class="flex items-center">
                     <!-- Notification Bell -->
                     @include('components.notification-bell')
+                    
+                    <!-- Vertical Divider -->
+                    <div class="hidden sm:block h-8 w-px bg-white/20 mx-3 md:mx-5"></div>
 
-                    <div class="flex items-center ms-3 relative">
+                    <div class="flex items-center mr-2 md:mr-6 relative">
                         <div>
-                            <button type="button" onclick="toggleUserDropdown(event)" class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" aria-expanded="false">
+                            <button type="button" onclick="toggleUserDropdown(event)" class="flex items-center space-x-3 text-sm focus:outline-none rounded-lg p-1 transition-colors duration-200" aria-expanded="false">
                                 <span class="sr-only">Open user menu</span>
-                                <div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
+                                
+                                <div class="hidden md:flex flex-col text-right">
+                                    <span class="font-bold text-white text-sm leading-tight">{{ auth()->user()->name }}</span>
+                                    <span class="text-[10px] text-emerald-300 font-bold uppercase tracking-widest mt-0.5">
+                                        @if(auth()->user()->hasRole('staff'))
+                                            Staff
+                                        @elseif(auth()->user()->hasRole('lurah'))
+                                            Lurah
+                                        @elseif(auth()->user()->hasRole('masyarakat'))
+                                            Warga
+                                        @else
+                                            Admin
+                                        @endif
+                                    </span>
+                                </div>
+
+                                <div class="w-9 h-9 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
                                     <img src="{{ auth()->user()->avatar ? asset('storage/' . auth()->user()->avatar) : asset('images/default-profile.png') }}" 
                                          class="w-full h-full object-cover" 
                                          alt="{{ auth()->user()->name }}">
                                 </div>
+
+                                <svg id="dropdown-chevron" class="w-4 h-4 text-emerald-100 hidden md:block transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
                             </button>
                         </div>
-                        <div class="z-50 hidden absolute right-0 top-8 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600 min-w-max" id="dropdown-user">
+                        <div class="z-50 hidden absolute right-0 top-12 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600 min-w-[200px]" id="dropdown-user">
                             <div class="px-4 py-3" role="none">
                                 <p class="text-sm font-bold text-[#0D2A1C] dark:text-white whitespace-nowrap" role="none">
                                     @if(auth()->user()->hasRole('staff'))
@@ -285,6 +308,29 @@
             }
         };
 
+        // Global SweetAlert Confirm (DRY)
+        window.confirmAction = function(event, formId, title, text, confirmText, isDanger = false) {
+            event.preventDefault();
+            Swal.fire({
+                title: title,
+                text: text,
+                icon: isDanger ? 'warning' : 'question',
+                showCancelButton: true,
+                confirmButtonColor: isDanger ? '#d33' : '#3085d6',
+                cancelButtonColor: isDanger ? '#3085d6' : '#d33',
+                confirmButtonText: confirmText,
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.close(); // Tutup popup dulu
+                    setTimeout(() => {
+                        window.showLoading(); // Munculkan loader
+                        document.getElementById(formId).submit(); // Submit form
+                    }, 400); // Tunggu animasi SweetAlert selesai (400ms)
+                }
+            });
+        };
+
         // Smooth Page Entry Logic
         window.addEventListener('load', function() {
             setTimeout(function() {
@@ -315,14 +361,14 @@
                 });
             });
 
-            // Attach to forms
-            var forms = document.querySelectorAll('form');
-            forms.forEach(function(form) {
-                form.addEventListener('submit', function() {
-                   if(!this.classList.contains('no-loader')) {
-                       window.showLoading();
-                   }
-                });
+            // Ponytail Event Delegation: Tangkap submit di level document, jangan pasang loop per form.
+            document.addEventListener('submit', function(e) {
+                // Jika form punya onsubmit (SweetAlert), biarkan SweetAlert yang urus loader.
+                if (e.target && e.target.tagName === 'FORM') {
+                    if (!e.target.classList.contains('no-loader') && !e.target.hasAttribute('onsubmit')) {
+                        window.showLoading();
+                    }
+                }
             });
 
             // Mobile Sidebar Toggle
@@ -340,6 +386,7 @@
         function toggleUserDropdown(e) {
             e.stopPropagation();
             const userDropdown = document.getElementById('dropdown-user');
+            const chevron = document.getElementById('dropdown-chevron');
             
             // Close notification dropdown if open
             if (typeof window.closeNotificationDropdown === 'function') {
@@ -347,16 +394,19 @@
             }
 
             userDropdown.classList.toggle('hidden');
+            if (chevron) chevron.classList.toggle('rotate-180');
         }
 
         // Close dropdowns on click outside
         document.addEventListener('click', function(e) {
             const userDropdown = document.getElementById('dropdown-user');
             const userBtn = document.querySelector('[onclick="toggleUserDropdown(event)"]');
+            const chevron = document.getElementById('dropdown-chevron');
             
             if (userDropdown && !userDropdown.classList.contains('hidden')) {
                 if (!userDropdown.contains(e.target) && !userBtn.contains(e.target)) {
                     userDropdown.classList.add('hidden');
+                    if (chevron) chevron.classList.remove('rotate-180');
                 }
             }
         });
@@ -373,35 +423,32 @@
     
     <script>
         // Handle Session Flash Messages (using Swal from app.js)
-        document.addEventListener('DOMContentLoaded', function() {
-            @if(session('success'))
-                window.hideLoading(); // Ensure loader is hidden
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Berhasil',
-                    text: "{{ session('success') }}",
-                    timer: 3000,
-                    showConfirmButton: false
-                });
-            @endif
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                @if(session('success'))
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'Berhasil',
+                        text: "{{ session('success') }}"
+                    });
+                @endif
 
-            @if(session('error'))
-                window.hideLoading(); // Ensure loader is hidden
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Gagal',
-                    text: "{{ session('error') }}",
-                });
-            @endif
+                @if(session('error'))
+                    Toast.fire({
+                        icon: 'error',
+                        title: 'Gagal',
+                        text: "{{ session('error') }}"
+                    });
+                @endif
 
-            @if(session('warning'))
-                window.hideLoading(); // Ensure loader is hidden
-                Swal.fire({
-                    icon: 'warning',
-                    title: 'Peringatan',
-                    text: "{{ session('warning') }}",
-                });
-            @endif
+                @if(session('warning'))
+                    Toast.fire({
+                        icon: 'warning',
+                        title: 'Peringatan',
+                        text: "{{ session('warning') }}"
+                    });
+                @endif
+            }, 1400); // Wait for loader to fully fade out (600ms wait + 700ms transition + 100ms buffer)
         });
 
 

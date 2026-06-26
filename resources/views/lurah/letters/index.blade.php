@@ -68,18 +68,12 @@
                         <td class="px-6 py-4 text-center">
                             @if($letter->status == 'processed')
                                 <div class="flex flex-col space-y-2 items-center">
-                                    <button onclick="confirmVerify('{{ $letter->id }}')" class="w-full inline-flex justify-center items-center text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:ring-green-300 font-bold rounded-lg text-xs px-4 py-2 transition shadow-sm">
-                                        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
-                                        Tanda Tangan
-                                    </button>
-                                    
-                                    <a href="{{ route('lurah.letters.show', $letter) }}" class="w-full inline-flex justify-center items-center text-yellow-600 bg-yellow-50 hover:bg-yellow-100 focus:ring-4 focus:ring-yellow-200 font-medium rounded-lg text-xs px-4 py-2 transition">
-                                        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
-                                        Detail Surat
-                                    </a>
-
-                                    <form id="verify-form-{{ $letter->id }}" action="{{ route('lurah.letters.verify', $letter) }}" method="POST" class="hidden">
+                                    <form id="verify-form-{{ $letter->id }}" action="{{ route('lurah.letters.verify', $letter) }}" method="POST" onsubmit="window.confirmAction(event, 'verify-form-{{ $letter->id }}', 'Setujui Surat?', 'Surat akan disetujui sebagai bukti pengesahan sah.', 'Ya, Setujui', false)">
                                         @csrf
+                                        <button type="submit" class="w-full inline-flex justify-center items-center text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:ring-green-300 font-bold rounded-lg text-xs px-4 py-2 transition shadow-sm">
+                                            <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+                                            Setujui
+                                        </button>
                                     </form>
                                 </div>
                             @elseif($letter->status == 'verified')
@@ -136,24 +130,6 @@
 </div>
 
 <script>
-    function confirmVerify(id) {
-        Swal.fire({
-            title: 'Setujui & Tanda Tangani?',
-            text: "Surat akan diverifikasi dan Tanda Tangan Digital akan dibubuhkan sebagai bukti pengesahan sah.",
-            icon: 'question',
-            showCancelButton: true,
-            confirmButtonColor: '#16a34a',
-            cancelButtonColor: '#6b7280',
-            confirmButtonText: 'Ya, Tanda Tangani',
-            cancelButtonText: 'Batal'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.showLoading();
-                document.getElementById('verify-form-' + id).submit();
-            }
-        })
-    }
-
     function openRejectModal(url) {
         document.getElementById('rejectForm').action = url;
         document.getElementById('rejectModal').classList.remove('hidden');

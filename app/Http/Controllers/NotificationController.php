@@ -31,10 +31,7 @@ class NotificationController extends Controller
      */
     public function markAsRead($id)
     {
-        $notification = Auth::user()->notifications()->where('id', $id)->first();
-        if ($notification) {
-            $notification->markAsRead();
-        }
+        Auth::user()->unreadNotifications()->where('id', $id)->update(['read_at' => now()]);
         return response()->json(['success' => true]);
     }
 
@@ -43,7 +40,7 @@ class NotificationController extends Controller
      */
     public function markAllRead()
     {
-        Auth::user()->unreadNotifications->markAsRead();
+        Auth::user()->unreadNotifications()->update(['read_at' => now()]);
         return response()->json(['success' => true]);
     }
 }
