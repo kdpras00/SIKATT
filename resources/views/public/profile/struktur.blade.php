@@ -100,6 +100,14 @@
                                 <div class="text-[13px] text-gray-800 underline mb-1 uppercase">IDA FARIDA,SE, M.Si</div>
                                 <div class="text-[13px] text-gray-800">NIP: 1969099262009012001</div>
                             </div>
+                            <!-- Vertical line down to Staff -->
+                            <div class="h-8 w-px bg-gray-800 relative z-0"></div>
+                            <!-- Staff Box -->
+                            <div class="bg-white border border-gray-800 p-3 w-[280px] text-center relative z-20">
+                                <div class="text-[13px] text-gray-800 mb-1 uppercase">STAFF</div>
+                                <div class="text-[13px] text-gray-800 underline mb-1 uppercase">Leni</div>
+                                <div class="text-[13px] text-gray-800">NIP: 200807200521122078</div>
+                            </div>
                         </div>
 
                         <!-- Right: Ekonomi dan Pembangunan -->
@@ -110,6 +118,14 @@
                                 <div class="text-[13px] text-gray-800 mb-1 uppercase">Kepala Seksi<br>Ekonomi Dan Pembangunan</div>
                                 <div class="text-[13px] text-gray-800 underline mb-1 uppercase">WAHYU SUPRIYATNA</div>
                                 <div class="text-[13px] text-gray-800">NIP: 196909262009012001</div>
+                            </div>
+                            <!-- Vertical line down to Staff -->
+                            <div class="h-8 w-px bg-gray-800 relative z-0"></div>
+                            <!-- Staff Box -->
+                            <div class="bg-white border border-gray-800 p-3 w-[280px] text-center relative z-20">
+                                <div class="text-[13px] text-gray-800 mb-1 uppercase">STAFF</div>
+                                <div class="text-[13px] text-gray-800 underline mb-1 uppercase">ANDINI, SH</div>
+                                <div class="text-[13px] text-gray-800">NIP: 200109082025011009</div>
                             </div>
                         </div>
                     </div>
