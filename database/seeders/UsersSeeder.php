@@ -21,7 +21,7 @@ class UsersSeeder extends Seeder
         // Lurah
         $lurah = User::create([
             'name' => 'DIDIN KHOMARUDIN, S.Sos, M.Si',
-            'email' => 'lurah@tanahtinggi.kel.id',
+            'email' => 'didin@tanahtinggi.kel.id',
             'password' => Hash::make('password'),
             'phone' => '081234567890',
             'address' => 'Kelurahan Tanah Tinggi, Kecamatan Tangerang',
@@ -31,7 +31,7 @@ class UsersSeeder extends Seeder
         // Sekretaris
         $sekretaris = User::create([
             'name' => 'ALAMSYAH, SH',
-            'email' => 'sekretaris@tanahtinggi.kel.id',
+            'email' => 'alamsyah@tanahtinggi.kel.id',
             'password' => Hash::make('password'),
             'phone' => '081234567891',
             'address' => 'Kelurahan Tanah Tinggi, Kecamatan Tangerang',
@@ -41,7 +41,7 @@ class UsersSeeder extends Seeder
         // Kasi Tata Pemerintahan
         $kasi_pemerintahan = User::create([
             'name' => 'IDA FARIDA, SE, M.Si',
-            'email' => 'kasi.pemerintahan@tanahtinggi.kel.id',
+            'email' => 'ida@tanahtinggi.kel.id',
             'password' => Hash::make('password'),
             'phone' => '081234567892',
             'address' => 'Kelurahan Tanah Tinggi, Kecamatan Tangerang',
@@ -51,7 +51,7 @@ class UsersSeeder extends Seeder
         // Kasi Ekonomi dan Pembangunan
         $kasi_ekonomi = User::create([
             'name' => 'WAHYU SUPRIYATNA',
-            'email' => 'kasi.ekonomi@tanahtinggi.kel.id',
+            'email' => 'wahyu@tanahtinggi.kel.id',
             'password' => Hash::make('password'),
             'phone' => '081234567893',
             'address' => 'Kelurahan Tanah Tinggi, Kecamatan Tangerang',
@@ -61,7 +61,7 @@ class UsersSeeder extends Seeder
         // Staff Leni
         $staff_leni = User::create([
             'name' => 'Leni',
-            'email' => 'staff.leni@tanahtinggi.kel.id',
+            'email' => 'leni@tanahtinggi.kel.id',
             'password' => Hash::make('password'),
             'phone' => '081234567894',
             'address' => 'Kelurahan Tanah Tinggi, Kecamatan Tangerang',
@@ -71,7 +71,7 @@ class UsersSeeder extends Seeder
         // Staff Andini
         $staff_andini = User::create([
             'name' => 'ANDINI, SH',
-            'email' => 'staff.andini@tanahtinggi.kel.id',
+            'email' => 'andini@tanahtinggi.kel.id',
             'password' => Hash::make('password'),
             'phone' => '081234567895',
             'address' => 'Kelurahan Tanah Tinggi, Kecamatan Tangerang',
