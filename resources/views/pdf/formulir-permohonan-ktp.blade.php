@@ -55,11 +55,16 @@
             <td style="width: 50%;"></td>
             <td style="width: 50%; text-align: center; vertical-align: top;">
                 <p style="margin-bottom: 2px;">Lurah Kelurahan Tanah Tinggi</p>
-                @if($sigBase64)
-                    <img src="{{ $sigBase64 }}" alt="TTD Lurah" style="width: 160px; height: auto; display: block; margin: 5px auto;">
-                @else
-                    <br><br><br><br>
-                @endif
+                <div class="signature-inner">
+                    @if($sigBase64)
+                        <img src="{{ $sigBase64 }}" alt="TTD Lurah" class="signature-img">
+                    @else
+                        <br><br><br><br>
+                    @endif
+                    @if($capBase64)
+                        <img src="{{ $capBase64 }}" alt="Cap Surat" class="cap-img">
+                    @endif
+                </div>
                 <p style="font-weight: bold; text-decoration: underline; margin: 0;">{{ $lurahName }}</p>
                 <p style="margin: 0; font-size: 10.5pt;">NIP.{{ $lurahNip }}</p>
             </td>

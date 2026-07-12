@@ -56,7 +56,10 @@
     <div class="signature-wrap">
         <div class="signature-box">
             <p>Lurah Kelurahan Tanah Tinggi</p>
-            @if($sigBase64)<img src="{{ $sigBase64 }}" alt="TTD Lurah" class="signature-img">@else<br><br><br>@endif
+            <div class="signature-inner">
+                    @if($sigBase64)<img src="{{ $sigBase64 }}" alt="TTD Lurah" class="signature-img">@else<br><br><br>@endif
+                    @if($capBase64)<img src="{{ $capBase64 }}" alt="Cap Surat" class="cap-img">@endif
+                </div>
             <p class="signature-name">{{ $lurahName }}</p>
             <p class="signature-nip">NIP.{{ $lurahNip }}</p>
         </div>

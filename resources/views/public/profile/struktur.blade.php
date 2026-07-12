@@ -44,8 +44,8 @@
                 <div class="flex flex-col items-center relative z-10 w-full">
                     <div class="bg-white border border-gray-800 p-3 w-[300px] text-center relative z-20">
                         <div class="text-[13px] text-gray-800 mb-1 uppercase">Lurah</div>
-                        <div class="text-[13px] text-gray-800 underline mb-1 uppercase">DIDIN KHOMARUDIN, S.Sos.M.Si</div>
-                        <div class="text-[13px] text-gray-800">NIP: 196711102001121003</div>
+                        <div class="text-[13px] text-gray-800 underline mb-1 uppercase">DEWI RATNA WATI, S.Sos</div>
+                        <div class="text-[13px] text-gray-800">NIP: 198603252011012001</div>
                     </div>
                     <!-- Vertical line down -->
                     <div class="h-16 w-px bg-gray-800 relative z-0"></div>
@@ -98,7 +98,7 @@
                             <div class="bg-white border border-gray-800 p-3 w-[280px] text-center relative z-20">
                                 <div class="text-[13px] text-gray-800 mb-1 uppercase">Kepala Seksi Tata<br>Pemerintahan</div>
                                 <div class="text-[13px] text-gray-800 underline mb-1 uppercase">IDA FARIDA,SE, M.Si</div>
-                                <div class="text-[13px] text-gray-800">NIP: 1969099262009012001</div>
+                                <div class="text-[13px] text-gray-800">NIP: 196909926200901200<b>1</b></div>
                             </div>
                             <!-- Vertical line down to Staff -->
                             <div class="h-8 w-px bg-gray-800 relative z-0"></div>

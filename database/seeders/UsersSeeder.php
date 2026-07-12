@@ -20,11 +20,11 @@ class UsersSeeder extends Seeder
 
         // Lurah
         $lurah = User::create([
-            'name' => 'DIDIN KHOMARUDIN, S.Sos, M.Si',
-            'email' => 'didin@tanahtinggi.kel.id',
+            'name'     => 'DEWI RATNA WATI, S.Sos',
+            'email'    => 'dewi@tanahtinggi.kel.id',
             'password' => Hash::make('password'),
-            'phone' => '081234567890',
-            'address' => 'Kelurahan Tanah Tinggi, Kecamatan Tangerang',
+            'phone'    => '081234567890',
+            'address'  => 'Kelurahan Tanah Tinggi, Kecamatan Tangerang',
         ]);
         $lurah->assignRole('lurah');
 

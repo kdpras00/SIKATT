@@ -2,8 +2,8 @@
     ======================================================
     TEMPLATE MASTER SURAT — KELURAHAN TANAH TINGGI
     Kecamatan Tangerang, Kota Tangerang, Banten 15119
-    Lurah : DIDIN KOMARUDIN, S.Sos,M.Si
-    NIP   : 196711102001121003
+    Lurah : DEWI RATNA WATI, S.Sos
+    NIP   : 198603252011012001
     ======================================================
     @include('pdf.partials.letter-header')
     Variabel dari parent: $letter (wajib), $sifat, $lampiran, $hal (opsional)
@@ -114,7 +114,9 @@
     .signature-wrap { margin-top: 15px; width: 100%; page-break-inside: avoid; }
     .signature-box { float: right; width: 230px; text-align: center; }
     .signature-box p { margin: 2px 0; line-height: 1.4; }
-    .signature-img { width: 160px; height: auto; display: block; margin: 5px auto; }
+    .signature-inner { position: relative; display: inline-block; min-height: 110px; width: 200px; text-align: center; margin-top: 5px; }
+    .signature-img { width: 150px; height: auto; display: inline-block; position: relative; z-index: 2; margin-top: 20px; margin-bottom: 0; margin-left: 0; margin-right: 0; }
+    .cap-img { width: 110px; height: auto; position: absolute; left: 10px; top: -5px; opacity: 0.85; z-index: 1; }
     .signature-name { text-decoration: underline; font-weight: bold; margin: 0; display: block; }
     .signature-nip { font-weight: normal; margin: 1px 0 0 0; font-size: 10.5pt; display: block; }
     .signature-table { width: 100%; border-collapse: collapse; }

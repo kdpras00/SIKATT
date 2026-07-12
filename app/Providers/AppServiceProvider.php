@@ -57,18 +57,36 @@ class AppServiceProvider extends ServiceProvider
                 }
             }
 
+            // Auto-detect cap/stempel surat
+            $capBase64 = '';
+            foreach ([
+                public_path('images/capsurat.png'),
+                storage_path('app/public/images/capsurat.png'),
+                base_path('public/images/capsurat.png'),
+                '/home/kure8737/public_html/images/capsurat.png',
+                '/home/kure8737/asetkelurahantanah-tinggi.my.id/public/images/capsurat.png',
+            ] as $p) {
+                if (file_exists($p)) {
+                    try {
+                        $capBase64 = 'data:' . mime_content_type($p) . ';base64,' . base64_encode(file_get_contents($p));
+                    } catch (\Exception $e) {}
+                    break;
+                }
+            }
+
             // Data Lurah — dari DB jika ada, fallback ke data resmi Tanah Tinggi
             $letter    = $view->getData()['letter'] ?? null;
             $lurahName = ($letter && $letter->lurah)
                 ? strtoupper($letter->lurah->name)
-                : 'DIDIN KOMARUDIN, S.Sos,M.Si';
+                : 'DEWI RATNA WATI, S.Sos';
             $lurahNip  = ($letter && $letter->lurah && $letter->lurah->nip)
                 ? $letter->lurah->nip
-                : '196711102001121003';
+                : '198603252011012001';
 
             $view->with([
                 'logoBase64' => $logoBase64,
                 'sigBase64'  => $sigBase64,
+                'capBase64'  => $capBase64,
                 'lurahName'  => $lurahName,
                 'lurahNip'   => $lurahNip,
             ]);

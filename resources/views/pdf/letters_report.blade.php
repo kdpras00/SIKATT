@@ -59,13 +59,18 @@
                 <p style="margin: 0 0 5px 0;">Tanah Tinggi, {{ date('d F Y') }}</p>
                 <p style="margin: 0 0 5px 0;">Mengetahui,</p>
                 <p style="margin: 0 0 10px 0;"><strong>Lurah Tanah Tinggi</strong></p>
-                @if($sigBase64)
-                    <img src="{{ $sigBase64 }}" alt="TTD Lurah" style="width: 130px; height: auto; display: block; margin: 5px auto;">
-                @else
-                    <br><br><br><br>
-                @endif
-                <p style="margin: 5px 0 0 0;"><strong><u>DIDIN KOMARUDIN, S.Sos, M.Si</u></strong></p>
-                <p style="margin: 0; font-size: 11px; color: #555;">NIP. 196711102001121003</p>
+                <div style="position: relative; display: inline-block; min-height: 110px; width: 200px; text-align: center; margin-top: 5px;">
+                    @if($sigBase64)
+                        <img src="{{ $sigBase64 }}" alt="TTD Lurah" style="width: 140px; height: auto; display: inline-block; position: relative; z-index: 2; margin-top: 20px; margin-bottom: 0; margin-left: 0; margin-right: 0;">
+                    @else
+                        <br><br><br><br>
+                    @endif
+                    @if($capBase64)
+                        <img src="{{ $capBase64 }}" alt="Cap Surat" style="width: 110px; height: auto; position: absolute; left: 10px; top: -5px; opacity: 0.85; z-index: 1;">
+                    @endif
+                </div>
+                <p style="margin: 5px 0 0 0;"><strong><u>{{ $lurahName ?? 'DEWI RATNA WATI, S.Sos' }}</u></strong></p>
+                <p style="margin: 0; font-size: 11px; color: #555;">NIP. {{ $lurahNip ?? '198603252011012001' }}</p>
             </td>
         </tr>
     </table>
