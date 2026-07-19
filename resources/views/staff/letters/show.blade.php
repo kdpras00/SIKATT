@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-<div class="max-w-4xl mx-auto">
+<div class="max-w-5xl mx-auto">
     <!-- Breadcrumb -->
     <nav class="flex mb-4 text-sm text-gray-500">
         <a href="{{ route('staff.dashboard') }}" class="hover:text-blue-600">Dashboard</a>
@@ -17,9 +17,9 @@
         <span class="text-gray-900">Detail Permohonan</span>
     </nav>
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-6">
         <!-- Main Content -->
-        <div class="lg:col-span-2 space-y-6">
+        <div class="lg:col-span-3 space-y-6">
             <!-- Data Pemohon -->
             <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
                 <div class="p-6 border-b border-gray-50">
@@ -158,7 +158,7 @@
         </div>
 
         <!-- Sidebar Actions -->
-        <div class="space-y-6">
+        <div class="lg:col-span-2 space-y-6">
             <!-- Status Card -->
             <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
                  <h3 class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-4">Status</h3>
@@ -189,17 +189,16 @@
                  <div class="mt-6 space-y-3">
                      <form action="{{ route('staff.letters.process', $letter) }}" method="POST" id="processForm" onsubmit="window.confirmAction(event, 'processForm', 'Proses Surat?', 'Pastikan data sudah benar. Nomor surat akan digenerate otomatis!', 'Ya, Proses!', false)">
                         @csrf
-                        <textarea name="staff_notes" rows="2" class="w-full text-sm border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 mb-3" placeholder="Catatan opsional untuk Kepala Desa..."></textarea>
-                        <button type="submit" class="w-full py-3 px-4 rounded-xl text-sm font-bold text-white shadow-lg bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 hover:-translate-y-0.5 transition-all">
-                            Proses & Teruskan
-                        </button>
+                        <textarea name="staff_notes" rows="2" class="w-full text-sm border border-gray-300 p-3 rounded-lg focus:ring-green-500 focus:border-green-500 mb-3 bg-white" placeholder="Catatan opsional untuk Kepala Desa..."></textarea>
+                        <div class="flex gap-2">
+                            <button type="button" onclick="document.getElementById('rejectSection').classList.toggle('hidden')" class="flex-1 flex items-center justify-center text-center py-2.5 px-2 rounded-xl shadow-lg text-xs font-bold text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition leading-tight">
+                                Tolak Permohonan
+                            </button>
+                            <button type="submit" class="flex-1 flex items-center justify-center text-center py-2.5 px-2 rounded-xl text-xs font-bold text-white shadow-lg bg-green-600 hover:bg-green-700 transition-all leading-tight">
+                                Proses & Teruskan
+                            </button>
+                        </div>
                      </form>
-                     
-                     <hr class="border-gray-100">
-
-                     <button onclick="document.getElementById('rejectSection').classList.toggle('hidden')" class="w-full py-2.5 px-4 border border-red-300 rounded-lg shadow-sm text-sm font-bold text-red-600 bg-white hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition">
-                        Tolak Permohonan
-                     </button>
                      
                      <div id="rejectSection" class="hidden mt-3 bg-red-50 p-4 rounded-lg border border-red-100">
                          <form action="{{ route('staff.letters.reject', $letter) }}" method="POST" id="rejectForm" onsubmit="window.confirmAction(event, 'rejectForm', 'Tolak Permohonan?', 'Apakah Anda yakin ingin menolak permohonan ini?', 'Ya, Tolak!', true)">

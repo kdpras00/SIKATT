@@ -67,14 +67,16 @@
                         </td>
                         <td class="px-6 py-4 text-center">
                             @if($letter->status == 'processed')
-                                <div class="flex flex-col space-y-2 items-center">
-                                    <form id="verify-form-{{ $letter->id }}" action="{{ route('lurah.letters.verify', $letter) }}" method="POST" onsubmit="window.confirmAction(event, 'verify-form-{{ $letter->id }}', 'Setujui Surat?', 'Surat akan disetujui sebagai bukti pengesahan sah.', 'Ya, Setujui', false)">
+                                <div class="grid grid-cols-2 gap-2 items-center">
+                                    <form id="verify-form-{{ $letter->id }}" action="{{ route('lurah.letters.verify', $letter) }}" method="POST" onsubmit="window.confirmAction(event, 'verify-form-{{ $letter->id }}', 'Setujui Surat?', 'Surat akan disetujui sebagai bukti pengesahan sah.', 'Ya, Setujui', false)" class="w-full">
                                         @csrf
-                                        <button type="submit" class="w-full inline-flex justify-center items-center text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:ring-green-300 font-bold rounded-lg text-xs px-4 py-2 transition shadow-sm">
-                                            <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+                                        <button type="submit" class="w-full inline-flex justify-center items-center text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:ring-green-300 font-bold rounded-lg text-xs px-2 py-2 transition shadow-sm">
                                             Setujui
                                         </button>
                                     </form>
+                                    <button type="button" onclick="openRejectModal('{{ route('lurah.letters.reject', $letter) }}')" class="w-full inline-flex justify-center items-center text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:ring-red-300 font-bold rounded-lg text-xs px-2 py-2 transition shadow-sm">
+                                        Tolak
+                                    </button>
                                 </div>
                             @elseif($letter->status == 'verified')
                                 <div class="flex flex-col items-center">

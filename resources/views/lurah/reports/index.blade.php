@@ -81,20 +81,22 @@
             <table class="w-full text-sm text-left text-gray-500">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 border-b">
                     <tr>
-                        <th class="px-6 py-3">No. Surat</th>
-                        <th class="px-6 py-3">Pemohon</th>
-                        <th class="px-6 py-3">Jenis Surat</th>
-                        <th class="px-6 py-3">Tanggal Ajuan</th>
-                        <th class="px-6 py-3">Status</th>
+                        <th class="px-4 py-3">NO. SURAT</th>
+                        <th class="px-4 py-3">NAMA PEMOHON</th>
+                        <th class="px-4 py-3">NIK</th>
+                        <th class="px-4 py-3">JENIS SURAT</th>
+                        <th class="px-4 py-3">TANGGAL AJUAN</th>
+                        <th class="px-4 py-3">STATUS</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($data as $item)
                     <tr class="bg-white border-b hover:bg-gray-50">
-                        <td class="px-6 py-4 font-mono text-xs text-gray-900">{{ $item->letter_number ?? '(Pending)' }}</td>
-                        <td class="px-6 py-4 font-medium text-gray-900">{{ $item->user->name }}</td>
-                        <td class="px-6 py-4">{{ $item->letterType->name }}</td>
-                        <td class="px-6 py-4">{{ \Carbon\Carbon::parse($item->request_date)->translatedFormat('d M Y') }}</td>
+                        <td class="px-4 py-4 font-mono text-sm text-gray-900 whitespace-nowrap">{{ $item->letter_number ?? '(Pending)' }}</td>
+                        <td class="px-4 py-4 font-medium text-gray-900 whitespace-nowrap">{{ $item->user->name }}</td>
+                        <td class="px-4 py-4 text-gray-500 text-sm whitespace-nowrap">{{ $item->user->nik }}</td>
+                        <td class="px-4 py-4 whitespace-nowrap">{{ $item->letterType->name }}</td>
+                        <td class="px-4 py-4 whitespace-nowrap">{{ \Carbon\Carbon::parse($item->request_date)->translatedFormat('d M Y') }}</td>
                         <td class="px-6 py-4">
                              @if($item->status == 'verified') <span class="text-green-600 font-bold">Selesai</span>
                              @elseif($item->status == 'rejected') <span class="text-red-600 font-bold">Ditolak</span>

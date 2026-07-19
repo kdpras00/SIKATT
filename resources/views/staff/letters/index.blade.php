@@ -84,34 +84,38 @@
             <table class="w-full text-sm text-left text-gray-500">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 border-b">
                     <tr>
-                        <th class="px-6 py-3">PEMOHON</th>
-                        <th class="px-6 py-3">JENIS SURAT</th>
-                        <th class="px-6 py-3">TANGGAL PENGAJUAN</th>
-                        <th class="px-6 py-3">KEPERLUAN</th>
-                        <th class="px-6 py-3 text-center">STATUS</th>
-                        <th class="px-6 py-3 text-center">AKSI</th>
+                        <th class="px-4 py-3">NAMA PEMOHON</th>
+                        <th class="px-4 py-3">NIK</th>
+                        <th class="px-4 py-3">JENIS SURAT</th>
+                        <th class="px-4 py-3">NO. SURAT</th>
+                        <th class="px-4 py-3">TANGGAL PENGAJUAN</th>
+                        <th class="px-4 py-3">KEPERLUAN</th>
+                        <th class="px-4 py-3 text-center">STATUS</th>
+                        <th class="px-4 py-3 text-center">AKSI</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100">
                     @forelse($letters as $letter)
                     <tr class="bg-white hover:bg-gray-50 transition-colors">
-                        <td class="px-6 py-4 font-medium text-gray-900">
+                        <td class="px-4 py-4 font-medium text-gray-900 whitespace-nowrap">
                             {{ $letter->user->name }}
-                            <div class="text-xs text-gray-500">{{ $letter->user->nik }}</div>
                         </td>
-                        <td class="px-6 py-4">
-                            <span class="font-bold text-gray-800">{{ $letter->letterType->name }}</span>
-                            @if($letter->letter_number)
-                                <div class="text-xs text-blue-600 font-mono">{{ $letter->letter_number }}</div>
-                            @endif
+                        <td class="px-4 py-4 text-gray-500 text-sm whitespace-nowrap">
+                            {{ $letter->user->nik }}
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="px-4 py-4 font-bold text-gray-800 whitespace-nowrap">
+                            {{ $letter->letterType->name }}
+                        </td>
+                        <td class="px-4 py-4 text-blue-600 font-mono text-sm whitespace-nowrap">
+                            {{ $letter->letter_number ?: '-' }}
+                        </td>
+                        <td class="px-4 py-4 whitespace-nowrap">
                             {{ \Carbon\Carbon::parse($letter->request_date)->translatedFormat('d M Y') }}
                         </td>
-                        <td class="px-6 py-4 max-w-xs truncate">
+                        <td class="px-4 py-4 max-w-xs truncate">
                             {{ $letter->purpose }}
                         </td>
-                        <td class="px-6 py-4 text-center">
+                        <td class="px-4 py-4 text-center">
                             @if($letter->status == 'pending')
                                 <span class="text-yellow-600 font-bold text-xs uppercase tracking-wider">Pending</span>
                             @elseif($letter->status == 'processed')
@@ -122,7 +126,7 @@
                                 <span class="text-red-600 font-bold text-xs uppercase tracking-wider">Ditolak</span>
                             @endif
                         </td>
-                        <td class="px-6 py-4 text-center">
+                        <td class="px-4 py-4 text-center">
                             @if($letter->status == 'pending')
                                 <div class="flex justify-center space-x-2">
                                     <a href="{{ route('staff.letters.show', $letter) }}" class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded text-xs px-3 py-1.5 focus:outline-none transition">
@@ -136,7 +140,7 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="6" class="px-6 py-12 text-center text-gray-500">
+                        <td colspan="8" class="px-4 py-12 text-center text-gray-500">
                             Tidak ada data surat di kategori ini.
                         </td>
                     </tr>

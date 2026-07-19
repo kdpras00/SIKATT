@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-<div class="max-w-4xl mx-auto">
+<div class="max-w-5xl mx-auto">
     <!-- Breadcrumb -->
     <nav class="flex mb-4 text-sm text-gray-500">
         <a href="{{ route('lurah.dashboard') }}" class="hover:text-blue-600">Dashboard</a>
@@ -190,7 +190,7 @@
                      
                      <hr class="border-gray-100 my-4">
 
-                     <button onclick="document.getElementById('rejectSection').classList.toggle('hidden')" class="w-full py-2.5 px-4 border border-red-300 rounded-lg shadow-sm text-sm font-bold text-red-600 bg-white hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition">
+                     <button onclick="document.getElementById('rejectSection').classList.toggle('hidden')" class="w-full py-2.5 px-4 rounded-lg shadow-lg text-sm font-bold text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition">
                         Tolak / Revisi
                      </button>
                      

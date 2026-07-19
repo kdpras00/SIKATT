@@ -79,29 +79,33 @@
             <table class="w-full text-sm text-left text-gray-500">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 border-b">
                     <tr>
-                        <th class="px-6 py-3">NO. SURAT</th>
-                        <th class="px-6 py-3">JENIS SURAT</th>
-                        <th class="px-6 py-3">PEMOHON</th>
-                        <th class="px-6 py-3">TANGGAL SELESAI</th>
-                        <th class="px-6 py-3 text-center">AKSI</th>
+                        <th class="px-4 py-3">NO. SURAT</th>
+                        <th class="px-4 py-3">JENIS SURAT</th>
+                        <th class="px-4 py-3">NAMA PEMOHON</th>
+                        <th class="px-4 py-3">NIK</th>
+                        <th class="px-4 py-3">TANGGAL SELESAI</th>
+                        <th class="px-4 py-3 text-center">AKSI</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100">
                     @forelse($letters as $letter)
                     <tr class="bg-white hover:bg-gray-50 transition-colors">
-                        <td class="px-6 py-4 font-mono text-xs text-blue-600">
+                        <td class="px-4 py-4 font-mono text-sm text-blue-600 whitespace-nowrap">
                             {{ $letter->letter_number ?? '-' }}
                         </td>
-                        <td class="px-6 py-4 font-bold text-gray-900">
+                        <td class="px-4 py-4 font-bold text-gray-900 whitespace-nowrap">
                             {{ $letter->letterType->name }}
                         </td>
-                        <td class="px-6 py-4 font-medium">
+                        <td class="px-4 py-4 font-medium whitespace-nowrap">
                             {{ $letter->user->name }}
                         </td>
-                        <td class="px-6 py-4 text-xs">
+                        <td class="px-4 py-4 text-gray-500 text-sm whitespace-nowrap">
+                            {{ $letter->user->nik }}
+                        </td>
+                        <td class="px-4 py-4 text-sm whitespace-nowrap">
                             {{ $letter->updated_at->format('d M Y, H:i') }}
                         </td>
-                        <td class="px-6 py-4 text-center">
+                        <td class="px-4 py-4 text-center">
                             @if($letter->status == 'verified')
                                 <a href="{{ route('staff.letters.download', $letter) }}" target="_blank" class="inline-flex items-center text-blue-600 hover:underline">
                                     <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
@@ -114,7 +118,7 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="5" class="px-6 py-12 text-center text-gray-500">
+                        <td colspan="6" class="px-4 py-12 text-center text-gray-500">
                             Belum ada arsip untuk kategori ini.
                         </td>
                     </tr>
