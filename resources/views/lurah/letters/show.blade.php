@@ -180,19 +180,17 @@
                          Pastikan data sudah benar sebelum menyetujui. Surat yang disetujui akan diterbitkan dengan Tanda Tangan Digital Lurah.
                      </p>
 
-                     <form id="verifyForm" action="{{ route('lurah.letters.verify', $letter) }}" method="POST" onsubmit="window.confirmAction(event, 'verifyForm', 'Setujui Surat?', 'Surat akan disetujui sebagai bukti pengesahan sah.', 'Ya, Setujui', false)">
-                        @csrf
-                        <button type="submit" class="w-full py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-bold text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition flex justify-center items-center">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            Setujui Surat
-                        </button>
-                     </form>
-                     
-                     <hr class="border-gray-100 my-4">
-
-                     <button onclick="document.getElementById('rejectSection').classList.toggle('hidden')" class="w-full py-2.5 px-4 rounded-lg shadow-lg text-sm font-bold text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition">
-                        Tolak / Revisi
-                     </button>
+                     <div class="flex gap-2">
+                         <button onclick="document.getElementById('rejectSection').classList.toggle('hidden')" class="flex-1 py-2.5 px-2 rounded-lg shadow-lg text-sm font-bold text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition leading-tight">
+                            Tolak / Revisi
+                         </button>
+                         <form id="verifyForm" action="{{ route('lurah.letters.verify', $letter) }}" method="POST" onsubmit="window.confirmAction(event, 'verifyForm', 'Setujui Surat?', 'Surat akan disetujui sebagai bukti pengesahan sah.', 'Ya, Setujui', false)" class="flex-1">
+                            @csrf
+                            <button type="submit" class="w-full h-full py-2.5 px-2 border border-transparent rounded-lg shadow-sm text-sm font-bold text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition flex justify-center items-center leading-tight">
+                                Setujui Surat
+                            </button>
+                         </form>
+                     </div>
                      
                      <div id="rejectSection" class="hidden mt-3 bg-red-50 p-4 rounded-lg border border-red-100">
                          <form id="rejectForm" action="{{ route('lurah.letters.reject', $letter) }}" method="POST" onsubmit="window.confirmAction(event, 'rejectForm', 'Tolak Permohonan?', 'Apakah Anda yakin ingin menolak permohonan ini?', 'Ya, Tolak!', true)">

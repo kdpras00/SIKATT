@@ -80,18 +80,18 @@
             </div>
         </form>
 
-        <div class="overflow-x-auto">
+        <div class="overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
             <table class="w-full text-sm text-left text-gray-500">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 border-b">
                     <tr>
-                        <th class="px-4 py-3">NAMA PEMOHON</th>
-                        <th class="px-4 py-3">NIK</th>
-                        <th class="px-4 py-3">JENIS SURAT</th>
-                        <th class="px-4 py-3">NO. SURAT</th>
-                        <th class="px-4 py-3">TANGGAL PENGAJUAN</th>
-                        <th class="px-4 py-3">KEPERLUAN</th>
-                        <th class="px-4 py-3 text-center">STATUS</th>
-                        <th class="px-4 py-3 text-center">AKSI</th>
+                        <th class="px-4 py-3 whitespace-nowrap">NAMA PEMOHON</th>
+                        <th class="px-4 py-3 whitespace-nowrap">NIK</th>
+                        <th class="px-4 py-3 whitespace-nowrap">JENIS SURAT</th>
+                        <th class="px-4 py-3 whitespace-nowrap">NO. SURAT</th>
+                        <th class="px-4 py-3 whitespace-nowrap">TANGGAL PENGAJUAN</th>
+                        <th class="px-4 py-3 whitespace-nowrap">KEPERLUAN</th>
+                        <th class="px-4 py-3 text-center whitespace-nowrap">STATUS</th>
+                        <th class="px-4 py-3 text-center whitespace-nowrap">AKSI</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100">
@@ -115,7 +115,7 @@
                         <td class="px-4 py-4 max-w-xs truncate">
                             {{ $letter->purpose }}
                         </td>
-                        <td class="px-4 py-4 text-center">
+                        <td class="px-4 py-4 text-center whitespace-nowrap">
                             @if($letter->status == 'pending')
                                 <span class="text-yellow-600 font-bold text-xs uppercase tracking-wider">Pending</span>
                             @elseif($letter->status == 'processed')
@@ -128,13 +128,17 @@
                         </td>
                         <td class="px-4 py-4 text-center">
                             @if($letter->status == 'pending')
-                                <div class="flex justify-center space-x-2">
-                                    <a href="{{ route('staff.letters.show', $letter) }}" class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded text-xs px-3 py-1.5 focus:outline-none transition">
+                                <div class="flex flex-col gap-2">
+                                    <a href="{{ route('staff.letters.show', $letter) }}" class="w-full inline-flex justify-center items-center text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:ring-green-300 font-bold rounded-lg text-xs px-3 py-2 transition shadow-sm whitespace-nowrap">
                                         Lihat & Proses
                                     </a>
                                 </div>
                             @else
-                                <a href="{{ route('staff.letters.show', $letter) }}" class="text-gray-500 hover:text-gray-700 text-xs">Detail</a>
+                                <div class="flex flex-col items-center">
+                                    <a href="{{ route('staff.letters.show', $letter) }}" class="w-full inline-flex justify-center items-center text-gray-700 bg-gray-100 hover:bg-gray-200 focus:ring-4 focus:ring-gray-300 font-bold rounded-lg text-xs px-3 py-2 transition shadow-sm whitespace-nowrap">
+                                        Lihat Detail
+                                    </a>
+                                </div>
                             @endif
                         </td>
                     </tr>

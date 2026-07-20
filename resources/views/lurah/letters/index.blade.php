@@ -34,29 +34,36 @@
 
     <!-- Content -->
     <div class="p-6">
-        <div class="overflow-x-auto">
+        <div class="overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
             <table class="w-full text-sm text-left text-gray-500">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 border-b">
                     <tr>
-                        <th class="px-6 py-3">NO. SURAT & JENIS</th>
-                        <th class="px-6 py-3">PEMOHON</th>
-                        <th class="px-6 py-3">TANGGAL PROSES</th>
-                        <th class="px-6 py-3">CATATAN OPERATOR</th>
-                        <th class="px-6 py-3 text-center">AKSI</th>
+                        <th class="px-6 py-3 whitespace-nowrap">JENIS SURAT</th>
+                        <th class="px-6 py-3 whitespace-nowrap">NO. SURAT</th>
+                        <th class="px-6 py-3 whitespace-nowrap">NAMA PEMOHON</th>
+                        <th class="px-6 py-3 whitespace-nowrap">NIK</th>
+                        <th class="px-6 py-3 whitespace-nowrap">TANGGAL PROSES</th>
+                        <th class="px-6 py-3 whitespace-nowrap">CATATAN OPERATOR</th>
+                        <th class="px-6 py-3 text-center whitespace-nowrap">STATUS</th>
+                        <th class="px-6 py-3 text-center whitespace-nowrap">AKSI</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100">
                     @forelse($letters as $letter)
                     <tr class="bg-white hover:bg-gray-50 transition-colors">
-                        <td class="px-6 py-4">
-                            <div class="font-bold text-gray-900">{{ $letter->letterType->name }}</div>
-                            <div class="text-xs text-yellow-600 font-mono">{{ $letter->letter_number }}</div>
+                        <td class="px-6 py-4 whitespace-nowrap font-bold text-gray-900">
+                            {{ $letter->letterType->name }}
                         </td>
-                        <td class="px-6 py-4 font-medium text-gray-900">
+                        <td class="px-6 py-4 whitespace-nowrap text-yellow-600 font-mono text-sm">
+                            {{ $letter->letter_number }}
+                        </td>
+                        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                             {{ $letter->user->name }}
-                            <div class="text-xs text-gray-500">{{ $letter->user->nik }}</div>
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="px-6 py-4 text-gray-500 whitespace-nowrap text-sm">
+                            {{ $letter->user->nik }}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
                             {{ $letter->process_date ? \Carbon\Carbon::parse($letter->process_date)->translatedFormat('d M Y') : '-' }}
                             @if($letter->staff)
                                 <div class="text-xs text-gray-400">Oleh: {{ $letter->staff->name }}</div>
@@ -65,36 +72,37 @@
                         <td class="px-6 py-4 max-w-xs truncate italic text-gray-600">
                             "{{ $letter->staff_notes ?? '-' }}"
                         </td>
-                        <td class="px-6 py-4 text-center">
+                        <td class="px-6 py-4 text-center whitespace-nowrap">
                             @if($letter->status == 'processed')
-                                <div class="grid grid-cols-2 gap-2 items-center">
-                                    <form id="verify-form-{{ $letter->id }}" action="{{ route('lurah.letters.verify', $letter) }}" method="POST" onsubmit="window.confirmAction(event, 'verify-form-{{ $letter->id }}', 'Setujui Surat?', 'Surat akan disetujui sebagai bukti pengesahan sah.', 'Ya, Setujui', false)" class="w-full">
-                                        @csrf
-                                        <button type="submit" class="w-full inline-flex justify-center items-center text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:ring-green-300 font-bold rounded-lg text-xs px-2 py-2 transition shadow-sm">
-                                            Setujui
-                                        </button>
-                                    </form>
-                                    <button type="button" onclick="openRejectModal('{{ route('lurah.letters.reject', $letter) }}')" class="w-full inline-flex justify-center items-center text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:ring-red-300 font-bold rounded-lg text-xs px-2 py-2 transition shadow-sm">
-                                        Tolak
-                                    </button>
-                                </div>
+                                <span class="text-blue-600 font-bold text-xs uppercase tracking-wider">Menunggu TTD</span>
                             @elseif($letter->status == 'verified')
                                 <div class="flex flex-col items-center">
                                     <span class="text-green-600 font-bold text-xs uppercase tracking-wider">Sudah TTD</span>
                                     <div class="text-[10px] text-gray-500 mt-1">{{ \Carbon\Carbon::parse($letter->approved_date)->format('d/m/Y H:i') }}</div>
-                                    <a href="{{ route('lurah.letters.show', $letter) }}" class="mt-2 text-yellow-600 hover:underline text-[10px]">Lihat Detail</a>
+                                </div>
+                            @else
+                                <span class="text-red-600 font-bold text-xs uppercase tracking-wider">Ditolak</span>
+                            @endif
+                        </td>
+                        <td class="px-6 py-4 text-center">
+                            @if($letter->status == 'processed')
+                                <div class="flex flex-col gap-2">
+                                    <a href="{{ route('lurah.letters.show', $letter) }}" class="w-full inline-flex justify-center items-center text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:ring-green-300 font-bold rounded-lg text-xs px-3 py-2 transition shadow-sm whitespace-nowrap">
+                                        Review / Detail
+                                    </a>
                                 </div>
                             @else
                                 <div class="flex flex-col items-center">
-                                    <span class="text-red-600 font-bold text-xs uppercase tracking-wider">Ditolak</span>
-                                    <a href="{{ route('lurah.letters.show', $letter) }}" class="mt-2 text-yellow-600 hover:underline text-[10px]">Lihat Detail</a>
+                                    <a href="{{ route('lurah.letters.show', $letter) }}" class="w-full inline-flex justify-center items-center text-gray-700 bg-gray-100 hover:bg-gray-200 focus:ring-4 focus:ring-gray-300 font-bold rounded-lg text-xs px-3 py-2 transition shadow-sm whitespace-nowrap">
+                                        Lihat Detail
+                                    </a>
                                 </div>
                             @endif
                         </td>
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="5" class="px-6 py-12 text-center text-gray-500 italic">
+                        <td colspan="8" class="px-6 py-12 text-center text-gray-500 italic">
                             Tidak ada surat yang menunggu tanda tangan saat ini.
                         </td>
                     </tr>
